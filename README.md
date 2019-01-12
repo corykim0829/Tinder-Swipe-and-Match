@@ -2,11 +2,11 @@
 
 **Goal**
 
-![goal1](https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal1.png?raw=true)
+<img src="https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal1.png?raw=true" width="300px">
 
-![goal2](https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal2.png?raw=true)
+<img src="https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal2.png?raw=true" width="300px">
 
-![goal3](https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal3.png?raw=true)
+<img src="https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal3.png?raw=true" width="300px">
 
 
 
