@@ -13,10 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let grayView = UIView()
-        grayView.backgroundColor = .gray
-        
-        let subviews = [UIColor.gray, UIColor.darkGray, UIColor.black].map
+        let subviews = [UIColor.gray, .darkGray, .black].map
         { (color) -> UIView in
             let v = UIView()
             v.backgroundColor = color
@@ -27,27 +24,28 @@ class ViewController: UIViewController {
         topStackView.axis = .horizontal
         topStackView.distribution = .fillEqually
         topStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
         let blueView = UIView()
         blueView.backgroundColor = .blue
-        let yellowView = UIView()
-        yellowView.backgroundColor = .yellow
-        yellowView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
-        let stackView = UIStackView(arrangedSubviews: [topStackView, blueView, yellowView])
-//        stackView.distribution = .fillEqually
-        stackView.axis = .vertical
+        let bottomSubviews = [UIColor.red, .yellow, .purple, .cyan, .orange].map
+        { (color) -> UIView in
+            let v = UIView()
+            v.backgroundColor = color
+            return v
+        }
         
-        view.addSubview(stackView)
-        stackView.frame = .init(x: 0, y: 0, width: 300, height: 200)
+        let bottomStackView = UIStackView(arrangedSubviews: bottomSubviews)
+        bottomStackView.distribution = .fillEqually
+        bottomStackView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
-        stackView.fillSuperview()
+        let overallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, bottomStackView])
+        overallStackView.axis = .vertical
         
-        // this enables auto layout for us
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//        stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//        stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        view.addSubview(overallStackView)
+        overallStackView.frame = .init(x: 0, y: 0, width: 300, height: 200)
+        
+        overallStackView.fillSuperview()
     }
 }
 
