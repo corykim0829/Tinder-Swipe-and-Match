@@ -10,17 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let topStackView = TopNavigationStackView()
+    let blueView = UIView()
+    let buttonsStackView = HomeBottomControlsStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let topStackView = TopNavigationStackView()
-        
-        let blueView = UIView()
         blueView.backgroundColor = .blue
-        
-        let buttonsStackView = HomeBottomControlsStackView()
-        
-        
+        setupLayout()
+    }
+    
+    // MARK:- Fileprivate
+    
+    fileprivate func setupLayout() {
         let overallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, buttonsStackView])
         overallStackView.axis = .vertical
         
