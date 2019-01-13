@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3855FAB921EB07A1009D81EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855FAB821EB07A1009D81EF /* CardView.swift */; };
 		38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451E621E8C60D0031036F /* AppDelegate.swift */; };
 		38F451E921E8C60D0031036F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451E821E8C60D0031036F /* ViewController.swift */; };
 		38F451EC21E8C60D0031036F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38F451EA21E8C60D0031036F /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3855FAB821EB07A1009D81EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		38F451E321E8C60D0031036F /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38F451E621E8C60D0031036F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38F451E821E8C60D0031036F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				38F4520C21EA33A70031036F /* HomeBottomControlsStackView.swift */,
 				38F4520E21EA451B0031036F /* TopNavigationStackView.swift */,
+				3855FAB821EB07A1009D81EF /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				38F4520D21EA33A70031036F /* HomeBottomControlsStackView.swift in Sources */,
 				38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */,
 				38F4520821E8D7290031036F /* Extensions+UIView.swift in Sources */,
+				3855FAB921EB07A1009D81EF /* CardView.swift in Sources */,
 				38F4520F21EA451B0031036F /* TopNavigationStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
