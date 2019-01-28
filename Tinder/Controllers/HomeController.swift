@@ -19,9 +19,13 @@ class HomeController: UIViewController {
         User(name: "Jane", age: 19, profession: "Teacher", imageName: "lady4c")
     ]
     
+    let cardViewModels = [
+        User(name: "Kelly", age: 23, profession: "Music DJ", imageName: "lady5c").toCardViewModel(), User(name: "Jane", age: 19, profession: "Teacher", imageName: "lady4c").toCardViewModel()
+//        CardViewModel(imageName: "lady5c", attributedString: <#T##NSAttributedString#>, textAlignment: <#T##NSTextAlignment#>)
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupLayout()
         setupDummyCards()
     }
