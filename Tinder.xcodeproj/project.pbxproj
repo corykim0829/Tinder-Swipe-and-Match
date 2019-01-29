@@ -10,6 +10,7 @@
 		3855FAB921EB07A1009D81EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855FAB821EB07A1009D81EF /* CardView.swift */; };
 		386C88DD21ECC2BE0078F3CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88DC21ECC2BE0078F3CE /* User.swift */; };
 		386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88E121ECD1500078F3CE /* CardViewModel.swift */; };
+		38CF04E622007D4900175000 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CF04E522007D4900175000 /* Advertiser.swift */; };
 		38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451E621E8C60D0031036F /* AppDelegate.swift */; };
 		38F451E921E8C60D0031036F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451E821E8C60D0031036F /* HomeController.swift */; };
 		38F451EC21E8C60D0031036F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38F451EA21E8C60D0031036F /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		3855FAB821EB07A1009D81EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		386C88DC21ECC2BE0078F3CE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		386C88E121ECD1500078F3CE /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		38CF04E522007D4900175000 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		38F451E321E8C60D0031036F /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38F451E621E8C60D0031036F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38F451E821E8C60D0031036F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				386C88DC21ECC2BE0078F3CE /* User.swift */,
+				38CF04E522007D4900175000 /* Advertiser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			files = (
 				38F451E921E8C60D0031036F /* HomeController.swift in Sources */,
 				38F4520D21EA33A70031036F /* HomeBottomControlsStackView.swift in Sources */,
+				38CF04E622007D4900175000 /* Advertiser.swift in Sources */,
 				38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */,
 				38F4520821E8D7290031036F /* Extensions+UIView.swift in Sources */,
 				386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */,
