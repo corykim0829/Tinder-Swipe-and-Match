@@ -8,13 +8,12 @@
 
 import UIKit
 
-struct User {
+struct User: ProducesCardViewModel {
     // defining our properties for our model layer
     let name: String
     let age: Int
     let profession: String
     let imageName: String
-    
     
     func toCardViewModel() -> CardViewModel {
         let attributedText = NSMutableAttributedString(string: name, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
