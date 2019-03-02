@@ -14,17 +14,17 @@ class HomeController: UIViewController {
     let cardsDeckView = UIView()
     let buttonsStackView = HomeBottomControlsStackView()
     
-    let users = [
-        User(name: "Kelly", age: 23, profession: "Music DJ", imageName: "lady5c"),
-        User(name: "Jane", age: 19, profession: "Teacher", imageName: "lady4c")
-    ]
+//    let users = [
+//        User(name: "Kelly", age: 23, profession: "Music DJ", imageName: "lady5c"),
+//        User(name: "Jane", age: 19, profession: "Teacher", imageName: "lady4c")
+//    ]
     
     let cardViewModels: [CardViewModel] = {
         let producers = [
-        User(name: "Kelly", age: 23, profession: "Music DJ", imageName: "lady5c"),
-        User(name: "Jane", age: 19, profession: "Teacher", imageName: "lady4c"),
-        Advertiser(title: "Final Announcement", brandName: "ECONOVATION", posterPhotoName: "final_poster"),
-        User(name: "Jane", age: 19, profession: "Teacher", imageName: "lady4c")
+            User(name: "Kelly", age: 23, profession: "Music DJ", imageName: "lady5c"),
+            User(name: "Jane", age: 19, profession: "Teacher", imageName: "lady4c"),
+            Advertiser(title: "Final Announcement", brandName: "ECONOVATION", posterPhotoName: "final_poster"),
+            User(name: "Jane", age: 19, profession: "Teacher", imageName: "lady4c")
         ] as [ProducesCardViewModel]
         
         let viewModels = producers.map({return $0.toCardViewModel()})
