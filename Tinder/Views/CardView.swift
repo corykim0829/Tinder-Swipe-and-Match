@@ -67,6 +67,10 @@ class CardView: UIView {
     
     @objc fileprivate func handlePan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
+        case .began:
+            superview?.subviews.forEach({ (subview) in
+                subview.layer.removeAllAnimations()
+            })
         case .changed:
             handleChanged(gesture)
         case .ended:
