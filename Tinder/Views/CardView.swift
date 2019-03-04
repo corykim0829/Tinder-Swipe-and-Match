@@ -44,6 +44,7 @@ class CardView: UIView {
     }
     
     var imageIndex = 0
+    fileprivate let barDeselectedColor = UIColor(white: 0, alpha: 0.1)
     
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
         print("Handling tap and cycling photos")
@@ -58,7 +59,7 @@ class CardView: UIView {
         imageView.image = UIImage(named: imageName)
         
         barsStackView.arrangedSubviews.forEach { (v) in
-            v.backgroundColor = UIColor(white: 0, alpha: 0.1)
+            v.backgroundColor = barDeselectedColor
         }
         barsStackView.arrangedSubviews[imageIndex].backgroundColor = .white
     }
@@ -90,8 +91,6 @@ class CardView: UIView {
         barsStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
         barsStackView.spacing = 4
         barsStackView.distribution = .fillEqually
-        // some dummy bars for now
-        
     }
     
     fileprivate func setupGradientLayer() {
