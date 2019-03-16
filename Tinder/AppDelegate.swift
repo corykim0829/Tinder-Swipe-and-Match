@@ -15,7 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow()         // window를 수동으로 설정한다.
+        window?.makeKeyAndVisible() // window를 볼 수 있게 해준다.
+        window?.rootViewController = RegistrationController()
+        
         return true
     }
 
