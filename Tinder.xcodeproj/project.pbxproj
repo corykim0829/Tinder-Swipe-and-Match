@@ -13,6 +13,7 @@
 		38BC323C22369F9F00E143DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38BC323B22369F9F00E143DD /* Assets.xcassets */; };
 		38CF04E622007D4900175000 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CF04E522007D4900175000 /* Advertiser.swift */; };
 		38D4C9B0223D1E92009E2679 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D4C9AF223D1E92009E2679 /* RegistrationController.swift */; };
+		38D4C9B2223D48E3009E2679 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D4C9B1223D48E3009E2679 /* CustomTextField.swift */; };
 		38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451E621E8C60D0031036F /* AppDelegate.swift */; };
 		38F451E921E8C60D0031036F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451E821E8C60D0031036F /* HomeController.swift */; };
 		38F451EC21E8C60D0031036F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38F451EA21E8C60D0031036F /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		38BC323B22369F9F00E143DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38CF04E522007D4900175000 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		38D4C9AF223D1E92009E2679 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		38D4C9B1223D48E3009E2679 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		38F451E321E8C60D0031036F /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38F451E621E8C60D0031036F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38F451E821E8C60D0031036F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				38F4520C21EA33A70031036F /* HomeBottomControlsStackView.swift */,
 				38F4520E21EA451B0031036F /* TopNavigationStackView.swift */,
 				3855FAB821EB07A1009D81EF /* CardView.swift */,
+				38D4C9B1223D48E3009E2679 /* CustomTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38F451E921E8C60D0031036F /* HomeController.swift in Sources */,
+				38D4C9B2223D48E3009E2679 /* CustomTextField.swift in Sources */,
 				38F4520D21EA33A70031036F /* HomeBottomControlsStackView.swift in Sources */,
 				38CF04E622007D4900175000 /* Advertiser.swift in Sources */,
 				38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */,
