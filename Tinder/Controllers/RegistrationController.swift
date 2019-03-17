@@ -58,6 +58,23 @@ class RegistrationController: UIViewController {
 
         setupGradientLayer()
         
+        setupLayout()
+        setupNotificationObservers()
+    }
+    
+    // MARK:- Private
+    
+    fileprivate func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handlekeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    @objc fileprivate func handlekeyboardShow(notification: Notification) {
+//        print("keyboard will show")
+        // how to figure out how tall the keyboard actually is
+        print(notification)
+    }
+    
+    fileprivate func setupLayout() {
         let stackView = UIStackView(arrangedSubviews: [
             selectPhotoButton,
             fullNameTextField,
