@@ -23,20 +23,20 @@ class RegistrationController: UIViewController {
     }()
     
     let fullNameTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 24)
+        let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter full name"
         return tf
     }()
     
     let emailTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 24)
+        let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter email"
         tf.keyboardType = .emailAddress
         return tf
     }()
     
     let passwordTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 24)
+        let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter password"
         tf.isSecureTextEntry = true
         return tf
@@ -49,7 +49,7 @@ class RegistrationController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         button.layer.cornerRadius = 25
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         return button
     }()
     
