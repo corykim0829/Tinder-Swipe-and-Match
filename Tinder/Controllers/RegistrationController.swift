@@ -25,6 +25,7 @@ class RegistrationController: UIViewController {
     let fullNameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter full name"
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
@@ -32,6 +33,7 @@ class RegistrationController: UIViewController {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter email"
         tf.keyboardType = .emailAddress
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
@@ -39,15 +41,39 @@ class RegistrationController: UIViewController {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter password"
         tf.isSecureTextEntry = true
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        if textField == fullNameTextField {
+            print("Full name changing")
+        } else if textField == emailTextField {
+            print("email changing")
+        } else {
+            print("PW changing")
+        }
+        
+        let isFormVaild = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
+        
+        registerButton.isEnabled = isFormVaild
+        if isFormVaild {
+            registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            registerButton.setTitleColor(.white, for: .normal)
+        }
+    }
     
     let registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+//        button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        
+        button.backgroundColor = .lightGray
+        button.setTitleColor(.darkGray, for: .disabled)
+        button.isEnabled = false
+        
         button.layer.cornerRadius = 20
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         return button
