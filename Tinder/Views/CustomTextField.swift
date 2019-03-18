@@ -18,7 +18,7 @@ class CustomTextField: UITextField {
         self.height = height
         super.init(frame: .zero)
         self.backgroundColor = .white
-        self.layer.cornerRadius = 25
+        self.layer.cornerRadius = 20
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {

@@ -48,7 +48,7 @@ class RegistrationController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        button.layer.cornerRadius = 25
+        button.layer.cornerRadius = 20
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         return button
     }()
@@ -57,32 +57,58 @@ class RegistrationController: UIViewController {
         super.viewDidLoad()
 
         setupGradientLayer()
-        
         setupLayout()
         setupNotificationObservers()
+        setupTapGesture()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self) // you'll have a retain cycle
     }
     
     // MARK:- Private
     
+    fileprivate func setupTapGesture() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+    }
+    
+    @objc fileprivate func handleTapDismiss() {
+        self.view.endEditing(true) // dismisses keyboard
+    }
+    
     fileprivate func setupNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handlekeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc fileprivate func handleKeyboardHide() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.transform = .identity
+        })
     }
     
     @objc fileprivate func handlekeyboardShow(notification: Notification) {
-//        print("keyboard will show")
         // how to figure out how tall the keyboard actually is
-        print(notification)
+        guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardFrame = value.cgRectValue
+        
+        // Let's try to figure out how tall the gap is from the register button to the bottom of the screen
+        let bottomSpace = view.frame.height - stackView.frame.origin.y - stackView.frame.height
+        
+        let difference = keyboardFrame.height - bottomSpace
+        self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
     }
     
+    lazy var stackView = UIStackView(arrangedSubviews: [
+        selectPhotoButton,
+        fullNameTextField,
+        emailTextField,
+        passwordTextField,
+        registerButton
+        ])
+    
     fileprivate func setupLayout() {
-        let stackView = UIStackView(arrangedSubviews: [
-            selectPhotoButton,
-            fullNameTextField,
-            emailTextField,
-            passwordTextField,
-            registerButton
-            ])
-        
         view.addSubview(stackView)
         stackView.spacing = 8
         stackView.axis = .vertical
