@@ -47,19 +47,11 @@ class RegistrationController: UIViewController {
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
         if textField == fullNameTextField {
-            print("Full name changing")
+            registrationViewModel.fullName = textField.text
         } else if textField == emailTextField {
-            print("email changing")
+            registrationViewModel.email = textField.text
         } else {
-            print("PW changing")
-        }
-        
-        let isFormVaild = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
-        
-        registerButton.isEnabled = isFormVaild
-        if isFormVaild {
-            registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-            registerButton.setTitleColor(.white, for: .normal)
+            registrationViewModel.password = textField.text
         }
     }
     
@@ -68,8 +60,6 @@ class RegistrationController: UIViewController {
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-//        button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
         button.backgroundColor = .lightGray
         button.setTitleColor(.darkGray, for: .disabled)
         button.isEnabled = false
@@ -86,6 +76,7 @@ class RegistrationController: UIViewController {
         setupLayout()
         setupNotificationObservers()
         setupTapGesture()
+        setupRegistrationViewModelObserver()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,6 +85,22 @@ class RegistrationController: UIViewController {
     }
     
     // MARK:- Private
+    
+    let registrationViewModel = RegistrationViewModel()
+    
+    fileprivate func setupRegistrationViewModelObserver() {
+        registrationViewModel.isFormValidObsever = { [unowned self] (isFormValid) in
+            
+            self.registerButton.isEnabled = isFormValid
+            if isFormValid {
+                self.registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+                self.registerButton.setTitleColor(.white, for: .normal)
+            } else {
+                self.registerButton.backgroundColor = .lightGray
+                self.registerButton.setTitleColor(.darkGray, for: .normal)
+            }
+        }
+    }
     
     fileprivate func setupTapGesture() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
