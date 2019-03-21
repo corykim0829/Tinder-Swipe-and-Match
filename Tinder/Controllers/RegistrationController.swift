@@ -124,7 +124,6 @@ class RegistrationController: UIViewController {
         
         setupGradientLayer()
         setupLayout()
-        setupNotificationObservers()
         setupTapGesture()
         setupRegistrationViewModelObserver()
     }
