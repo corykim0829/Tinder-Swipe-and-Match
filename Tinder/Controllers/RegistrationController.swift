@@ -15,7 +15,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
-        self.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        registrationViewModel.bindableImage.value = image
+//        registrationViewModel.image = image
         dismiss(animated: true, completion: nil)
     }
     
@@ -138,17 +139,31 @@ class RegistrationController: UIViewController {
     let registrationViewModel = RegistrationViewModel()
     
     fileprivate func setupRegistrationViewModelObserver() {
-        registrationViewModel.isFormValidObsever = { [unowned self] (isFormValid) in
-            
+        registrationViewModel.bindableIsFormValid.bind { [unowned self] (isFormValid) in
+            guard let isFormValid = isFormValid else { return }
             self.registerButton.isEnabled = isFormValid
-            if isFormValid {
-                self.registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-                self.registerButton.setTitleColor(.white, for: .normal)
-            } else {
-                self.registerButton.backgroundColor = .lightGray
-                self.registerButton.setTitleColor(.darkGray, for: .normal)
-            }
+            self.registerButton.backgroundColor = isFormValid ? #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1) : .lightGray
+            self.registerButton.setTitleColor(isFormValid ? .white : .darkGray, for: .normal)
         }
+        
+        registrationViewModel.bindableImage.bind { [unowned self] (img) in
+            self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        //        registrationViewModel.isFormValidObsever = { [unowned self] (isFormValid) in
+        //
+        //            self.registerButton.isEnabled = isFormValid
+        //            if isFormValid {
+        //                self.registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        //                self.registerButton.setTitleColor(.white, for: .normal)
+        //            } else {
+        //                self.registerButton.backgroundColor = .lightGray
+        //                self.registerButton.setTitleColor(.darkGray, for: .normal)
+        //            }
+        //        }
+        
+//        registrationViewModel.imageObserver = { [unowned self] img in
+//            self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+//        }
     }
     
     fileprivate func setupTapGesture() {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		338C62809AB2703E5DAECFF1 /* Pods_Tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12925D3774204AD56B94E44F /* Pods_Tinder.framework */; };
 		380EE24D2242A7030003A6FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380EE24C2242A7030003A6FD /* GoogleService-Info.plist */; };
+		38142BE52243C95300015EA8 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142BE42243C95300015EA8 /* Bindable.swift */; };
 		3855FAB921EB07A1009D81EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855FAB821EB07A1009D81EF /* CardView.swift */; };
 		386C88DD21ECC2BE0078F3CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88DC21ECC2BE0078F3CE /* User.swift */; };
 		386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88E121ECD1500078F3CE /* CardViewModel.swift */; };
@@ -43,6 +44,7 @@
 		12925D3774204AD56B94E44F /* Pods_Tinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13AC78363F32C15DEEC4C6AE /* Pods_TinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		380EE24C2242A7030003A6FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		38142BE42243C95300015EA8 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		3855FAB821EB07A1009D81EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		386C88DC21ECC2BE0078F3CE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		386C88E121ECD1500078F3CE /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				38F451E821E8C60D0031036F /* HomeController.swift */,
 				38D4C9AF223D1E92009E2679 /* RegistrationController.swift */,
 				38D4C9B3224015A6009E2679 /* RegistrationViewModel.swift */,
+				38142BE42243C95300015EA8 /* Bindable.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38142BE52243C95300015EA8 /* Bindable.swift in Sources */,
 				38F451E921E8C60D0031036F /* HomeController.swift in Sources */,
 				38D4C9B4224015A6009E2679 /* RegistrationViewModel.swift in Sources */,
 				38D4C9B2223D48E3009E2679 /* CustomTextField.swift in Sources */,
