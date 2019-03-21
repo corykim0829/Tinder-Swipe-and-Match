@@ -121,7 +121,7 @@ class RegistrationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupGradientLayer()
         setupLayout()
         setupNotificationObservers()
@@ -132,6 +132,10 @@ class RegistrationController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self) // you'll have a retain cycle
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNotificationObservers()
     }
     
     // MARK:- Private
