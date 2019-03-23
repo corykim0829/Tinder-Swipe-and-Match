@@ -110,34 +110,25 @@ class RegistrationController: UIViewController {
             if let err = err {
                 print(err)
                 self.showHUDWithError(error: err)
-                return  
+                return
             }
             
+            print("Successfully registered user : ", res?.user.uid ?? "")
+            
+            // Only upload images to Firebase Storage once you are authorized
             let filename = UUID().uuidString
             let ref = Storage.storage().reference(withPath: "/images/\(filename)")
             let imageData = self.registrationViewModel.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
             ref.putData(imageData, metadata: nil, completion: { (_, err) in
                 
                 if let err = err {
-                    print("putting Data error : ", err)
                     self.showHUDWithError(error: err)
-                    return
+                    return // bail
                 }
                 
                 print("Finished uploading image to storage")
-                ref.downloadURL(completion: { (url, err) in
-                    if let err = err {
-                        print("downloading URL error : ", err)
-                        self.showHUDWithError(error: err)
-                        return
-                    }
-                    
-                    self.registeringHUD.dismiss()
-                    print("Download url of our image is : ", url?.absoluteString ?? "")
-                })
             })
             
-            print("Successfully registered user : ", res?.user.uid ?? "")
         }
     }
     
