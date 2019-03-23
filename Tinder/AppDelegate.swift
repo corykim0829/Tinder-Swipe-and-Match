@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()         // window를 수동으로 설정한다.
         window?.makeKeyAndVisible() // window를 볼 수 있게 해준다.
-        window?.rootViewController = RegistrationController()
+        window?.rootViewController = HomeController()
         
         return true
     }
