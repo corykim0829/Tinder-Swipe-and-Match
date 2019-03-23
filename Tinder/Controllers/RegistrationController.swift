@@ -100,15 +100,12 @@ class RegistrationController: UIViewController {
     
     @objc fileprivate func handleRegister() {
         self.handleTapDismiss()
-        
-        registrationViewModel.bindableIsRegisterating.value = true
         registrationViewModel.performRegistration { [weak self] (err) in
             if let err = err {
                 self?.showHUDWithError(error: err)
                 return
             }
-            
-            print("Finished registering", err)
+            print("Finished registering")
         }
     }
     
