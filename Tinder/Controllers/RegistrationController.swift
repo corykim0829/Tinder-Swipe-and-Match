@@ -103,8 +103,7 @@ class RegistrationController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        registeringHUD.textLabel.text = "Register"
-        registeringHUD.show(in: view)
+        registrationViewModel.bindableRegisterating.value = true
         
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
             if let err = err {
@@ -127,8 +126,17 @@ class RegistrationController: UIViewController {
                 }
                 
                 print("Finished uploading image to storage")
+                ref.downloadURL(completion: { (url, err) in
+                    if let err = err {
+                        self.showHUDWithError(error: err)
+                        return
+                    }
+                    
+                    self.registrationViewModel.bindableRegisterating.value = false
+                    print("Download url of our image is :", url?.absoluteString ?? "")
+                    // stroe the download url into Firestore next lesson
+                })
             })
-            
         }
     }
     
@@ -174,21 +182,15 @@ class RegistrationController: UIViewController {
         registrationViewModel.bindableImage.bind { [unowned self] (img) in
             self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
-        //        registrationViewModel.isFormValidObsever = { [unowned self] (isFormValid) in
-        //
-        //            self.registerButton.isEnabled = isFormValid
-        //            if isFormValid {
-        //                self.registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        //                self.registerButton.setTitleColor(.white, for: .normal)
-        //            } else {
-        //                self.registerButton.backgroundColor = .lightGray
-        //                self.registerButton.setTitleColor(.darkGray, for: .normal)
-        //            }
-        //        }
         
-//        registrationViewModel.imageObserver = { [unowned self] img in
-//            self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
-//        }
+        registrationViewModel.bindableRegisterating.bind { [unowned self] (isRegistering) in
+            if isRegistering == true {
+                self.registeringHUD.textLabel.text = "Register"
+                self.registeringHUD.show(in: self.view)
+            } else {
+                self.registeringHUD.dismiss()
+            }
+        }
     }
     
     fileprivate func setupTapGesture() {
