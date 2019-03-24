@@ -52,7 +52,6 @@ class HomeController: UIViewController {
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
                 self.cardViewModels.append(user.toCardViewModel())
-//                print(user.name, user.imageNames)
             })
             self.setupDummyCards()
         }
