@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		338C62809AB2703E5DAECFF1 /* Pods_Tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12925D3774204AD56B94E44F /* Pods_Tinder.framework */; };
+		380D6710224E2D0C00E87EEE /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380D670F224E2D0C00E87EEE /* SettingsController.swift */; };
 		380EE24D2242A7030003A6FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380EE24C2242A7030003A6FD /* GoogleService-Info.plist */; };
 		38142BE52243C95300015EA8 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142BE42243C95300015EA8 /* Bindable.swift */; };
 		3855FAB921EB07A1009D81EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855FAB821EB07A1009D81EF /* CardView.swift */; };
@@ -43,6 +44,7 @@
 		046186034537F0718CCDA6D8 /* Pods-Tinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinder.release.xcconfig"; path = "Target Support Files/Pods-Tinder/Pods-Tinder.release.xcconfig"; sourceTree = "<group>"; };
 		12925D3774204AD56B94E44F /* Pods_Tinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13AC78363F32C15DEEC4C6AE /* Pods_TinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		380D670F224E2D0C00E87EEE /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		380EE24C2242A7030003A6FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38142BE42243C95300015EA8 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		3855FAB821EB07A1009D81EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				38D4C9AF223D1E92009E2679 /* RegistrationController.swift */,
 				38D4C9B3224015A6009E2679 /* RegistrationViewModel.swift */,
 				38142BE42243C95300015EA8 /* Bindable.swift */,
+				380D670F224E2D0C00E87EEE /* SettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				38F4520821E8D7290031036F /* Extensions+UIView.swift in Sources */,
 				386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */,
 				3855FAB921EB07A1009D81EF /* CardView.swift in Sources */,
+				380D6710224E2D0C00E87EEE /* SettingsController.swift in Sources */,
 				38F4520F21EA451B0031036F /* TopNavigationStackView.swift in Sources */,
 				38D4C9B0223D1E92009E2679 /* RegistrationController.swift in Sources */,
 				386C88DD21ECC2BE0078F3CE /* User.swift in Sources */,
