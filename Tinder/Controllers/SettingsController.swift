@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
+import SDWebImage
 
 class CustomImagePickerController: UIImagePickerController {
     var imageButton: UIButton?
@@ -55,6 +58,36 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
         tableView.keyboardDismissMode = .interactive
+        
+        fetchCurrentUser()
+    }
+    
+    var user: User?
+    
+    fileprivate func fetchCurrentUser() {
+        // fetch some Firestore Data
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print(err)
+                return
+            }
+            
+            // fetch our user here
+            guard let dictionary = snapshot?.data() else { return }
+            self.user = User(dictionary: dictionary)
+            self.loadUserPhotos()
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    fileprivate func loadUserPhotos() {
+        guard let imageUrl = self.user?.imageUrl1, let url = URL(string: imageUrl) else { return }
+        // why exactly do we use this SDWebImageManager class to load our images?
+        SDWebImageManager.shared().loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, _, _, _, _) in
+            self.image1Button.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
     }
     
     fileprivate func setupTapGesture() {
@@ -130,16 +163,20 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         switch indexPath.section {
         case 1:
             cell.textField.placeholder = "Enter Name"
+            cell.textField.text = user?.name
         case 2:
             cell.textField.placeholder = "Enter Profession"
+            cell.textField.text = user?.profession
         case 3:
             cell.textField.placeholder = "Enter Age"
+            if let age = user?.age {
+                cell.textField.text = String(age)
+            }
         default:
             cell.textField.placeholder = "Enter Your Bio"
         }
         return cell
     }
-    
     
     fileprivate func setupNavigationItems() {
         navigationItem.title = "Settings"
