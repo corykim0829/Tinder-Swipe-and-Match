@@ -37,6 +37,22 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         let imageButton = (picker as? CustomImagePickerController)?.imageButton
         imageButton?.setImage(selectedImage?.withRenderingMode(.alwaysOriginal), for: .normal)
         dismiss(animated: true)
+        
+        let filename = UUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+        guard let uploadData = selectedImage?.jpegData(compressionQuality: 0.75) else { return }
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Uploading image..."
+        hud.show(in: view)
+        ref.putData(uploadData, metadata: nil) { (_, err) in
+            hud.dismiss()
+            if let err = err {
+                print("Failed to upload image to storage", err)
+                return
+            }
+            
+            print("Finished uploading image")
+        }
     }
     
     func createButton(selector: Selector) -> UIButton {

@@ -10,15 +10,21 @@
 
 
 
-## Architecture : MVC, MVVM Model
+## Using MVVM Model
 
+MVVM : Model + View + ViewModel
 
+ViewModel : View를 표현하기 위해 만들어진 View를 위한 Model
+
+[프레임워크 패턴 참고 사이트](https://magi82.github.io/android-mvc-mvp-mvvm/)
+
+[MVVM 학습 정리](https://medium.com/@junhyi.park/mvvm-%ED%95%99%EC%8A%B5-%EC%A0%95%EB%A6%AC-bb7576e23c65)
 
 
 
 ## Firebase
 
-
+Save and fetch datas through Google Firebase firestore
 
 
 
