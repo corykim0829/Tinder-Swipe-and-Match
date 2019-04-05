@@ -45,13 +45,32 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         hud.textLabel.text = "Uploading image..."
         hud.show(in: view)
         ref.putData(uploadData, metadata: nil) { (_, err) in
-            hud.dismiss()
             if let err = err {
+                hud.dismiss()
                 print("Failed to upload image to storage", err)
                 return
             }
             
             print("Finished uploading image")
+            ref.downloadURL(completion: { (url, err) in
+                
+                hud.dismiss()
+                
+                if let err = err {
+                    print("Failed to retrieve download URL :", err)
+                    return
+                }
+                
+                print("Finished getting download url :", url?.absoluteString ?? "")
+                
+                if imageButton == self.image1Button {
+                    self.user?.imageUrl1 = url?.absoluteString
+                } else if imageButton == self.image2Button {
+                    self.user?.imageUrl2 = url?.absoluteString
+                } else {
+                    self.user?.imageUrl3 = url?.absoluteString
+                }
+            })
         }
     }
     
@@ -225,6 +244,8 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             "uid": uid,
             "fullName": user?.name ?? "",
             "imageUrl1": user?.imageUrl1 ?? "",
+            "imageUrl2": user?.imageUrl2 ?? "",
+            "imageUrl3": user?.imageUrl3 ?? "",
             "age": user?.age ?? -1,
             "profession": user?.profession ?? ""
         ]
