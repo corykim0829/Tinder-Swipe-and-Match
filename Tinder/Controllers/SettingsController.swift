@@ -178,10 +178,13 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             headerLabel.text = "Profession"
         case 3:
             headerLabel.text = "Age"
-        default:
+        case 4:
             headerLabel.text = "Bio"
+        default:
+            headerLabel.text = "Age Range"
         }
-        headerLabel.font = UIFont.boldSystemFont(ofSize: headerLabel.font.pointSize)
+//        headerLabel.font = UIFont.boldSystemFont(ofSize: headerLabel.font.pointSize)
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 17)
         return headerLabel
     }
     
@@ -190,18 +193,56 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         if section == 0 {
             return 300
         }
-        return 40
+        return 44
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 0 : 1
     }
     
+    @objc fileprivate func handleMinSlider(slider: UISlider) {
+        // I want to update the minLabel in my AgeRangeCell somehow...
+        let indexPath = IndexPath(row: 0, section: 5)
+        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
+        ageRangeCell.minLabel.text = "Min \(Int(slider.value))"
+        user?.minSeekingAge = Int(slider.value)
+        
+        if slider.value >= ageRangeCell.maxSlider.value {
+            ageRangeCell.maxSlider.value = slider.value
+            ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
+        }
+    }
+    
+    @objc fileprivate func handleMaxSlider(slider: UISlider) {
+        let indexPath = IndexPath(row: 0, section: 5)
+        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
+        ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
+        user?.maxSeekingAge = Int(slider.value)
+        
+        if slider.value <= ageRangeCell.minSlider.value {
+            slider.value = ageRangeCell.minSlider.value
+            ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 5 {
+            let ageRangeCell = AgeRangeCell(style: .default, reuseIdentifier: nil)
+            ageRangeCell.minSlider.addTarget(self, action: #selector(handleMinSlider), for: .valueChanged)
+            ageRangeCell.maxSlider.addTarget(self, action: #selector(handleMaxSlider), for: .valueChanged)
+            if let minSeekingAgeValue = user?.minSeekingAge, let maxSeekingAgeValue = user?.maxSeekingAge {
+                ageRangeCell.minSlider.value = Float(minSeekingAgeValue)
+                ageRangeCell.maxSlider.value = Float(maxSeekingAgeValue)
+                ageRangeCell.minLabel.text = "Min \(minSeekingAgeValue)"
+                ageRangeCell.maxLabel.text = "Max \(maxSeekingAgeValue)"
+            }
+            return ageRangeCell
+        }
+        
         let cell = SettingsCell(style: .default, reuseIdentifier: nil)
         
         switch indexPath.section {
@@ -219,7 +260,7 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
                 cell.textField.text = String(age)
             }
             cell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
-        default:
+        default :
             cell.textField.placeholder = "Enter Your Bio"
         }
         return cell
@@ -257,7 +298,9 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             "imageUrl2": user?.imageUrl2 ?? "",
             "imageUrl3": user?.imageUrl3 ?? "",
             "age": user?.age ?? -1,
-            "profession": user?.profession ?? ""
+            "profession": user?.profession ?? "",
+            "minSeekingAge": user?.minSeekingAge ?? -1,
+            "maxSeekingAge": user?.maxSeekingAge ?? -1
         ]
         
         let hud = JGProgressHUD(style: .dark)
