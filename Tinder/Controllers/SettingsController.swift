@@ -206,27 +206,42 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     
     @objc fileprivate func handleMinSlider(slider: UISlider) {
         // I want to update the minLabel in my AgeRangeCell somehow...
-        let indexPath = IndexPath(row: 0, section: 5)
-        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-        ageRangeCell.minLabel.text = "Min \(Int(slider.value))"
-        user?.minSeekingAge = Int(slider.value)
-        
-        if slider.value >= ageRangeCell.maxSlider.value {
-            ageRangeCell.maxSlider.value = slider.value
-            ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
-        }
+//        let indexPath = IndexPath(row: 0, section: 5)
+//        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
+//        ageRangeCell.minLabel.text = "Min \(Int(slider.value))"
+//        user?.minSeekingAge = Int(slider.value)
+//
+//        if slider.value >= ageRangeCell.maxSlider.value {
+//            ageRangeCell.maxSlider.value = slider.value
+//            ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
+//        }
+        evaluateMinMax()
     }
     
     @objc fileprivate func handleMaxSlider(slider: UISlider) {
-        let indexPath = IndexPath(row: 0, section: 5)
-        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-        ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
-        user?.maxSeekingAge = Int(slider.value)
+//        let indexPath = IndexPath(row: 0, section: 5)
+//        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
+//        ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
+//        user?.maxSeekingAge = Int(slider.value)
+//
+//        if slider.value <= ageRangeCell.minSlider.value {
+//            slider.value = ageRangeCell.minSlider.value
+//            ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
+//        }
+        evaluateMinMax()
+    }
+    
+    fileprivate func evaluateMinMax() {
+        guard let ageRangeCell = tableView.cellForRow(at: [5, 0]) as? AgeRangeCell else { return }
+        let minValue = Int(ageRangeCell.minSlider.value)
+        var maxValue = Int(ageRangeCell.maxSlider.value)
+        maxValue = max(minValue, maxValue)
+        ageRangeCell.maxSlider.value = Float(maxValue)
+        ageRangeCell.minLabel.text = "Min \(minValue)"
+        ageRangeCell.maxLabel.text = "Max \(maxValue)"
         
-        if slider.value <= ageRangeCell.minSlider.value {
-            slider.value = ageRangeCell.minSlider.value
-            ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
-        }
+        user?.minSeekingAge = minValue
+        user?.maxSeekingAge = maxValue
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
