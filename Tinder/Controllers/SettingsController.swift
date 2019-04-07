@@ -11,11 +11,17 @@ import Firebase
 import JGProgressHUD
 import SDWebImage
 
+protocol SettingsControllerDelegate {
+    func didSaveSettings()
+}
+
 class CustomImagePickerController: UIImagePickerController {
     var imageButton: UIButton?
 }
 
 class SettingsController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var delegate: SettingsControllerDelegate?
     
     // instance properties
     lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
@@ -205,29 +211,10 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     }
     
     @objc fileprivate func handleMinSlider(slider: UISlider) {
-        // I want to update the minLabel in my AgeRangeCell somehow...
-//        let indexPath = IndexPath(row: 0, section: 5)
-//        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-//        ageRangeCell.minLabel.text = "Min \(Int(slider.value))"
-//        user?.minSeekingAge = Int(slider.value)
-//
-//        if slider.value >= ageRangeCell.maxSlider.value {
-//            ageRangeCell.maxSlider.value = slider.value
-//            ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
-//        }
         evaluateMinMax()
     }
     
     @objc fileprivate func handleMaxSlider(slider: UISlider) {
-//        let indexPath = IndexPath(row: 0, section: 5)
-//        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-//        ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
-//        user?.maxSeekingAge = Int(slider.value)
-//
-//        if slider.value <= ageRangeCell.minSlider.value {
-//            slider.value = ageRangeCell.minSlider.value
-//            ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
-//        }
         evaluateMinMax()
     }
     
@@ -249,12 +236,10 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             let ageRangeCell = AgeRangeCell(style: .default, reuseIdentifier: nil)
             ageRangeCell.minSlider.addTarget(self, action: #selector(handleMinSlider), for: .valueChanged)
             ageRangeCell.maxSlider.addTarget(self, action: #selector(handleMaxSlider), for: .valueChanged)
-            if let minSeekingAgeValue = user?.minSeekingAge, let maxSeekingAgeValue = user?.maxSeekingAge {
-                ageRangeCell.minSlider.value = Float(minSeekingAgeValue)
-                ageRangeCell.maxSlider.value = Float(maxSeekingAgeValue)
-                ageRangeCell.minLabel.text = "Min \(minSeekingAgeValue)"
-                ageRangeCell.maxLabel.text = "Max \(maxSeekingAgeValue)"
-            }
+            ageRangeCell.minSlider.value = Float(user?.minSeekingAge ?? -1)
+            ageRangeCell.maxSlider.value = Float(user?.maxSeekingAge ?? -1)
+            ageRangeCell.minLabel.text = "Min \(user?.minSeekingAge ?? -1)"
+            ageRangeCell.maxLabel.text = "Max \(user?.maxSeekingAge ?? -1)"
             return ageRangeCell
         }
         
@@ -299,8 +284,13 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave)),
-            UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleCancel))
+            UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         ]
+    }
+    
+    @objc fileprivate func handleLogout() {
+        let registerController = RegistrationController()
+        present(registerController, animated: true)
     }
     
     @objc fileprivate func handleSave() {
@@ -328,6 +318,12 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
                 return
             }
             print("Finished saving user info")
+            self.dismiss(animated: true, completion: {
+                print("Dismissal complete")
+                // homeController.fetchCurrentUser()
+                // I want to refetch my cards inside of homeController somehow
+                self.delegate?.didSaveSettings()
+            })
         }
     }
     
