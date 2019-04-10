@@ -1,16 +1,20 @@
-##Tinder FireStore Swipe & Match without Storyboard
+##Tinder FireStore Swipe & Match
 
-**Goal**
-
-<img src="https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal1.png?raw=true" width="300px">
-
-<img src="https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal2.png?raw=true" width="300px">
-
-<img src="https://github.com/corykim0829/Tinder-Swipe-and-Match/blob/master/goal3.png?raw=true" width="300px">
+Cloning Tinder App without storyboard
 
 
 
-## Using MVVM Model
+## Features
+
+- Clean code
+- OOP
+- [MVVM](##MVVM Pattern)
+- [Firebase](##Firebase)
+- [Commit Log Convention](##Commit Log Convention)
+
+
+
+## MVVM Pattern
 
 MVVM : Model + View + ViewModel
 
@@ -24,11 +28,13 @@ ViewModel : View를 표현하기 위해 만들어진 View를 위한 Model
 
 ## Firebase
 
-Save and fetch datas through Google Firebase firestore
+Save and fetch datas through Google Firebase database, firestore
+
+Users images would be saved in storage, users data would be saved in firebase database, firestore!
 
 
 
-## Commit 로그 규칙
+## Commit Log Convention
 
 - 포멧 : `{prefix}: {변경 내용}`
 - prefix
@@ -36,7 +42,6 @@ Save and fetch datas through Google Firebase firestore
   - 인터페이스 추가 : `ui:`
   - 오류 수정 : `fix:`
   - 잡다한 일 : `chore`
-  - 문서화 : `doc:`
   - 리팩토링 : `refactor:`
   - 파일추가 : `add:`
 
