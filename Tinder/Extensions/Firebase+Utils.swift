@@ -17,7 +17,6 @@ extension Firestore {
                 return
             }
             
-            // fetched our user here
             guard let dictionary = snapshot?.data() else { return }
             let user = User(dictionary: dictionary)
             completion(user, nil)

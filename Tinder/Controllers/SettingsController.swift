@@ -106,17 +106,12 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     var user: User?
     
     fileprivate func fetchCurrentUser() {
-        // fetch some Firestore Data
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+        Firestore.firestore().fetchCurrentUser { (user, err) in
             if let err = err {
-                print(err)
+                print("Failed to fetch user: ", err)
                 return
             }
-            
-            // fetch our user here
-            guard let dictionary = snapshot?.data() else { return }
-            self.user = User(dictionary: dictionary)
+            self.user = user
             self.loadUserPhotos()
             self.tableView.reloadData()
         }
