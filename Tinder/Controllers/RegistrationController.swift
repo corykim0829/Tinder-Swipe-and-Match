@@ -8,9 +8,7 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 import JGProgressHUD
-import FirebaseStorage
 
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
