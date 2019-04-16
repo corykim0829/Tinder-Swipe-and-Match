@@ -1,19 +1,8 @@
-##Cloning Tinder
+## Cloning Tinder
 
 ![swift](<https://img.shields.io/badge/Swift-5.0-orange.svg>) ![platform](<https://img.shields.io/badge/platform-iOS-9cf.svg>) ![Google Firebase](<https://img.shields.io/badge/firebase-v5.1.0-yellow.svg>) ![JGProgressHUD](<https://img.shields.io/badge/JGProgressHUD-v2.0.3-lightgray.svg>) ![SDWebImage](<https://img.shields.io/badge/SDWebImage-v4.4.2-green.svg>)
 
 > Cloning Tinder App without storyboard
-
-
-
-## Features
-
-- Clean code
-- OOP
-- [사용한 아키텍쳐](##사용한 아키텍쳐)
-- [Firebase](##Firebase)
-- [Commit Log Convention](##Commit Log Convention)
-
 
 
 ## 사용한 아키텍쳐
