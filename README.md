@@ -1,6 +1,8 @@
-##Tinder FireStore Swipe & Match
+##Cloning Tinder
 
-Cloning Tinder App without storyboard
+![swift](<https://img.shields.io/badge/Swift-5.0-orange.svg>) ![platform](<https://img.shields.io/badge/platform-iOS-9cf.svg>) ![Google Firebase](<https://img.shields.io/badge/firebase-v5.1.0-yellow.svg>) ![JGProgressHUD](<https://img.shields.io/badge/JGProgressHUD-v2.0.3-lightgray.svg>) ![SDWebImage](<https://img.shields.io/badge/SDWebImage-v4.4.2-green.svg>)
+
+> Cloning Tinder App without storyboard
 
 
 
@@ -8,17 +10,15 @@ Cloning Tinder App without storyboard
 
 - Clean code
 - OOP
-- [MVVM](##MVVM Pattern)
+- [사용한 아키텍쳐](##사용한 아키텍쳐)
 - [Firebase](##Firebase)
 - [Commit Log Convention](##Commit Log Convention)
 
 
 
-## MVVM Pattern
+## 사용한 아키텍쳐
 
-MVVM : Model + View + ViewModel
-
-ViewModel : View를 표현하기 위해 만들어진 View를 위한 Model
+- 아키텍쳐 패턴 : MVVM
 
 [프레임워크 패턴 참고 사이트](https://magi82.github.io/android-mvc-mvp-mvvm/)
 
@@ -26,11 +26,13 @@ ViewModel : View를 표현하기 위해 만들어진 View를 위한 Model
 
 
 
-## Firebase
+## 코딩 스타일
 
-Save and fetch datas through Google Firebase database, firestore
+- 클린코드 지향
 
-Users images would be saved in storage, users data would be saved in firebase database, firestore!
+- 연관된 기능끼리 묶어 MVVM 역할을 철저하게 구분한다.
+- Swift 기본 데이터타입에서 기능추가를 구현할 경우 extenstion을 이용하도록 노력한다.
+- 기기 iPhone Xs => iPhone 8+
 
 
 
