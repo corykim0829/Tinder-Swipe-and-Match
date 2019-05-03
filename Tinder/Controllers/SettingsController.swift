@@ -284,6 +284,8 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     }
     
     @objc fileprivate func handleLogout() {
+        try? Auth.auth().signOut()
+        dismiss(animated: true)
         let registerController = RegistrationController()
         present(registerController, animated: true)
     }

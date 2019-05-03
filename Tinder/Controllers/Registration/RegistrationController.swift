@@ -28,6 +28,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
 
 class RegistrationController: UIViewController {
     
+    var delegate: LoginControllerDelegate?
+    
     // UI Components
     let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -96,6 +98,20 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    let toLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Go to Login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(handleToLogin), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        return button
+    }()
+    
+    @objc fileprivate func handleToLogin() {
+        let loginController = LoginController()
+        navigationController?.pushViewController(loginController, animated: true)
+    }
+    
     let registeringHUD = JGProgressHUD(style: .dark)
     
     @objc fileprivate func handleRegister() {
@@ -106,6 +122,9 @@ class RegistrationController: UIViewController {
                 return
             }
             print("Finished registering")
+            self?.dismiss(animated: true, completion: {
+                self?.delegate?.didFinishLogginIn()
+            })
         }
     }
     
@@ -202,11 +221,17 @@ class RegistrationController: UIViewController {
         ])
     
     fileprivate func setupLayout() {
+        navigationController?.isNavigationBarHidden = true
+        
         view.addSubview(stackView)
         stackView.spacing = 8
         stackView.axis = .vertical
         stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(toLoginButton)
+        toLoginButton.anchor(top: nil, leading: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: nil)
+        toLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     fileprivate func setupGradientLayer() {
