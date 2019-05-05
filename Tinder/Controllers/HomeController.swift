@@ -24,6 +24,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         
+        try? Auth.auth().signOut()
+        
         setupLayout()
         fetchCurrentUser()
     }
@@ -68,7 +70,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     var lastFetchedUser: User?
     
     fileprivate func fetchUsersFromFirestore() {
-        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
+        let minAge = user?.minSeekingAge ?? 18
+        let maxAge = user?.maxSeekingAge ?? 50
         
         let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
         query.getDocuments { (snapshot, err) in

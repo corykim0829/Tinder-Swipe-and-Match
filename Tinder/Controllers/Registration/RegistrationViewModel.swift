@@ -8,9 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
-import FirebaseStorage
-import FirebaseFirestore
 
 class RegistrationViewModel {
 

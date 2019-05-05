@@ -8,9 +8,7 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 import JGProgressHUD
-import FirebaseStorage
 
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -109,6 +107,7 @@ class RegistrationController: UIViewController {
     
     @objc fileprivate func handleToLogin() {
         let loginController = LoginController()
+        loginController.delegate = delegate
         navigationController?.pushViewController(loginController, animated: true)
     }
     
