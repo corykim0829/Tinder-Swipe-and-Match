@@ -9,7 +9,13 @@
 import UIKit
 import SDWebImage
 
+protocol CardViewDelegate {
+    func didTapMoreInfo()
+}
+
 class CardView: UIView {
+    
+    var delegate: CardViewDelegate?
     
     var cardViewModel: CardViewModel! {
         didSet {
@@ -50,6 +56,17 @@ class CardView: UIView {
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
     let gradientLayer = CAGradientLayer()
     fileprivate let informationLabel = UILabel()
+    
+    let moreInfoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleTapMoreInfo), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleTapMoreInfo() {
+        delegate?.didTapMoreInfo()
+    }
     
     // Configurations
     fileprivate let threshold: CGFloat = 80
@@ -93,6 +110,9 @@ class CardView: UIView {
         informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
         informationLabel.numberOfLines = 0
         informationLabel.textColor = .white
+        
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 16, right: 16), size: .init(width: 44, height: 44))
     }
     
     fileprivate let barsStackView = UIStackView()
