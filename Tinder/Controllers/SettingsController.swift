@@ -226,8 +226,8 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         user?.maxSeekingAge = maxValue
     }
     
-    static var defaultMinSeekingAge = 18
-    static var defaultMaxSeekingAge = 50
+    static let defaultMinSeekingAge = 18
+    static let defaultMaxSeekingAge = 50
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 5 {
