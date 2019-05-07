@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserDetailController: UIViewController, UIScrollViewDelegate {
+    
+    // you should really create a different ViewModel object for UserDetails
+    // ie UserDetailViewModel
+    var cardViewModel: CardViewModel! {
+        didSet {
+            infoLabel.attributedText = cardViewModel.attributedString
+            
+            guard let firstImageUrl = cardViewModel.imageUrls.first, let url = URL(string: firstImageUrl) else { return }
+            imageView.sd_setImage(with: url)
+        }
+    }
     
     lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
