@@ -13,6 +13,7 @@
 		38142BE52243C95300015EA8 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142BE42243C95300015EA8 /* Bindable.swift */; };
 		381A9B38227C668700DE4AB0 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381A9B37227C668700DE4AB0 /* LoginController.swift */; };
 		381A9B3A227C6AC100DE4AB0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381A9B39227C6AC100DE4AB0 /* LoginViewModel.swift */; };
+		383AA8DD22841A9D0096E0BF /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AA8DC22841A9D0096E0BF /* SwipingPhotosController.swift */; };
 		3855FAB921EB07A1009D81EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855FAB821EB07A1009D81EF /* CardView.swift */; };
 		386C88DD21ECC2BE0078F3CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88DC21ECC2BE0078F3CE /* User.swift */; };
 		386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88E121ECD1500078F3CE /* CardViewModel.swift */; };
@@ -55,6 +56,7 @@
 		38142BE42243C95300015EA8 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		381A9B37227C668700DE4AB0 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		381A9B39227C6AC100DE4AB0 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		383AA8DC22841A9D0096E0BF /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		3855FAB821EB07A1009D81EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		386C88DC21ECC2BE0078F3CE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		386C88E121ECD1500078F3CE /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				38C47AB4227F12FC0049AC26 /* UserDetailController.swift */,
+				383AA8DC22841A9D0096E0BF /* SwipingPhotosController.swift */,
 			);
 			path = "User Details";
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				386C88DD21ECC2BE0078F3CE /* User.swift in Sources */,
 				381A9B3A227C6AC100DE4AB0 /* LoginViewModel.swift in Sources */,
 				387AB645224FE4FB00550DB6 /* SettingsCell.swift in Sources */,
+				383AA8DD22841A9D0096E0BF /* SwipingPhotosController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
