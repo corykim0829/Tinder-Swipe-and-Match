@@ -125,7 +125,7 @@ class UserDetailController: UIViewController, UIScrollViewDelegate {
         var width = view.frame.width + changeY * 2
 //        print(-changeY)
         width = max(view.frame.width, width)
-        imageView.frame = CGRect(x: min(0, -changeY), y: min(0, -changeY), width: width, height: width)
+        imageView.frame = CGRect(x: min(-changeY, 0), y: min(-changeY, 0), width: width, height: width)
     }
     
     @objc fileprivate func handleDismiss() {

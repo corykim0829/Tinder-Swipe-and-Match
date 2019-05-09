@@ -101,7 +101,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     }
     
     func didTapMoreInfo(cardViewModel: CardViewModel) {
-        print("Home controller:", cardViewModel.attributedString)
+//        print("Home controller:", cardViewModel.attributedString)
         let userDetailController = UserDetailController()
         userDetailController.cardViewModel = cardViewModel
         present(userDetailController, animated: true)
