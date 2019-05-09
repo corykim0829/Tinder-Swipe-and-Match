@@ -54,6 +54,7 @@ class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSou
             view.addSubview(imageView)
             imageView.fillSuperview()
             imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
         }
         
         required init?(coder aDecoder: NSCoder) {
