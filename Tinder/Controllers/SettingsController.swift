@@ -258,6 +258,7 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             cell.textField.addTarget(self, action: #selector(handleProfessionChange), for: .editingChanged)
         case 3:
             cell.textField.placeholder = "Enter Age"
+            cell.textField.keyboardType = .numberPad
             if let age = user?.age {
                 cell.textField.text = String(age)
             }
