@@ -24,6 +24,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         bottomControls.likeButton.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+        bottomControls.dislikeButton.addTarget(self, action: #selector(handleDislike), for: .touchUpInside)
                 
         setupLayout()
         fetchCurrentUser()
@@ -63,7 +64,9 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     }
 
     @objc fileprivate func handleRefresh() {
-        fetchUsersFromFirestore()
+        if self.topCardView == nil {
+            fetchUsersFromFirestore()
+        }
     }
     
     var lastFetchedUser: User?
@@ -79,6 +82,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 print("Failed to fetch users :", err)
                 return
             }
+            self.topCardView = nil
             
             // we are going to set up the nextCardView relationship for all cards somehow
             
@@ -108,14 +112,39 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     var topCardView: CardView?
     
     @objc fileprivate func handleLike() {
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-            self.topCardView?.frame = CGRect(x: 600, y: 0, width: self.topCardView!.frame.width, height: self.topCardView!.frame.height)
-            let angle = 20 * CGFloat.pi / 180
-            self.topCardView?.transform = CGAffineTransform(rotationAngle: angle)
-        }) { (_) in
-            self.topCardView?.removeFromSuperview()
-            self.topCardView = self.topCardView?.nextCardView
+        performSwipeAnimation(traslation: 700, angle: 20)
+    }
+    
+    @objc fileprivate func handleDislike() {
+        performSwipeAnimation(traslation: -700, angle: -20)
+    }
+    
+    fileprivate func performSwipeAnimation(traslation: CGFloat, angle: CGFloat) {
+        let duration = 0.5
+        let translationAnimation = CABasicAnimation(keyPath: "position.x")
+        
+        translationAnimation.toValue = traslation
+        translationAnimation.duration = duration
+        translationAnimation.fillMode = .forwards
+        translationAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        translationAnimation.isRemovedOnCompletion = false
+        
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = angle * CGFloat.pi / 180
+        rotationAnimation.duration = duration
+        
+        let cardView = topCardView
+        topCardView = cardView?.nextCardView
+        
+        CATransaction.setCompletionBlock {
+            cardView?.removeFromSuperview()
+            
         }
+        
+        cardView?.layer.add(translationAnimation, forKey: "translation")
+        cardView?.layer.add(rotationAnimation, forKey: "rotation")
+        
+        CATransaction.commit()
     }
     
     func didRemoveCard(cardView: CardView) {
