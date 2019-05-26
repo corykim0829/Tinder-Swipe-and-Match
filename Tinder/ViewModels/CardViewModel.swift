@@ -15,11 +15,13 @@ protocol ProducesCardViewModel {
 // ViewModel is supposed to represent the State of our View
 class CardViewModel {
     // we'll define the properties that are view will display/render out
+    let uid: String
     let imageUrls: [String]
     let attributedString: NSAttributedString
     let textAlignment: NSTextAlignment
     
-    init(imageNames: [String], attributedString: NSAttributedString, textAlignment: NSTextAlignment) {
+    init(uid: String, imageNames: [String], attributedString: NSAttributedString, textAlignment: NSTextAlignment) {
+        self.uid = uid
         self.imageUrls = imageNames
         self.attributedString = attributedString
         self.textAlignment = textAlignment
