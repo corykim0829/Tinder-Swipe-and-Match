@@ -134,7 +134,10 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                         return
                     }
                     
-                    print("Successfulyy updated swipe data...")
+//                    print("Successfulyy updated swipe data...")
+                    if didLike == 1 {
+                        self.checkIfMatchExists(cardUID: cardUID)
+                    }
                 })
             } else {
                 Firestore.firestore().collection("swipes").document(uid).setData(documentData, completion: { (err) in
@@ -143,9 +146,36 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                         return
                     }
                     
-                    print("Successfulyy saved swipe data...")
+//                    print("Successfulyy saved swipe data...")
+                    if didLike == 1 {
+                        self.checkIfMatchExists(cardUID: cardUID)
+                    }
                 })
             }
+        }
+    }
+    
+    fileprivate func checkIfMatchExists(cardUID: String) {
+        
+        Firestore.firestore().collection("swipes").document(cardUID).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch document for card user:", err)
+                return
+            }
+            
+            guard let data = snapshot?.data() as? [String: Int] else { return }
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            
+            let hasMatched = data[uid] == 1
+            
+            if hasMatched {
+                print("It's matched")
+                let hud = JGProgressHUD(style: .dark)
+                hud.textLabel.text = "Matched!"
+                hud.show(in: self.view)
+                hud.dismiss(afterDelay: 3)
+            }
+
         }
     }
     
