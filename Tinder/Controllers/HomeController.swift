@@ -150,16 +150,15 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 return
             }
             
+            if didLike == 1 {
+                self.checkIfMatchExists(cardUID: cardUID)
+            }
+            
             if snapshot?.exists == true {
                 Firestore.firestore().collection("swipes").document(uid).updateData(documentData, completion: { (err) in
                     if let err = err {
                         print("Failed to update swipe data:", err)
                         return
-                    }
-                    
-//                    print("Successfulyy updated swipe data...")
-                    if didLike == 1 {
-                        self.checkIfMatchExists(cardUID: cardUID)
                     }
                 })
             } else {
@@ -167,11 +166,6 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                     if let err = err {
                         print("Failed to set swipe data:", err)
                         return
-                    }
-                    
-//                    print("Successfulyy saved swipe data...")
-                    if didLike == 1 {
-                        self.checkIfMatchExists(cardUID: cardUID)
                     }
                 })
             }
