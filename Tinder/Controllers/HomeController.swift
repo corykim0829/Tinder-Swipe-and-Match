@@ -41,7 +41,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     }
     
     func didFinishLogginIn() {
-        fetchUsersFromFirestore()
+        fetchSwipes()
     }
     
     fileprivate let hud = JGProgressHUD(style: .dark)
