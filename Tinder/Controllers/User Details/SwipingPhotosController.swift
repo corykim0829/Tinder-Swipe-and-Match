@@ -9,10 +9,17 @@
 import UIKit
 
 class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    
+    var imageUrls = [String]()
 
     var cardViewModel: CardViewModel! {
         didSet {
-            controllers = cardViewModel.imageUrls.map({ PhotoController(imageUrl: $0) })
+            cardViewModel.imageUrls.forEach { (url) in
+                if url != "" {
+                    imageUrls.append(url)
+                }
+            }
+            controllers = imageUrls.map({ PhotoController(imageUrl: $0) })
             setViewControllers([controllers.first!], direction: .forward, animated: false)
             
             setupImageBarViews()
@@ -23,7 +30,7 @@ class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSou
     fileprivate let deselectedBarColor = UIColor(white: 0, alpha: 0.1)
     
     fileprivate func setupImageBarViews() {
-        cardViewModel.imageUrls.forEach { (_) in
+        imageUrls.forEach { (_) in
             let barView = UIView()
             barView.backgroundColor = deselectedBarColor
             barStackView.addArrangedSubview(barView)
