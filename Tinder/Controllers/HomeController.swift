@@ -83,9 +83,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     }
 
     @objc fileprivate func handleRefresh() {
-        if self.topCardView == nil {
-            fetchSwipes()
-        }
+        cardsDeckView.subviews.forEach({ $0.removeFromSuperview() })
+        fetchSwipes()
     }
     
     var lastFetchedUser: User?
@@ -126,9 +125,15 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                         self.topCardView = cardView
                     }
                 }
-//                self.cardViewModels.append(user.toCardViewModel())
-//                self.lastFetchedUser = user
             })
+            
+            if self.cardsDeckView.subviews.count == 0 {
+                let hud = JGProgressHUD(style: .dark)
+                hud.indicatorView = nil
+                hud.textLabel.text = "You swiped all!"
+                hud.show(in: self.view)
+                hud.dismiss(afterDelay: 2)
+            }
         }
     }
     
