@@ -59,13 +59,32 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 return
             }
             self.user = user
+            self.fetchSwipes()
+        }
+    }
+    
+    var swipes = [String: Int]()
+    
+    fileprivate func fetchSwipes() {
+        hud.textLabel.text = "Loading"
+        hud.show(in: view)
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("swipes").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch swipes info for current user:", err)
+                return
+            }
+            
+            guard let data = snapshot?.data() as? [String: Int] else { return }
+            self.swipes = data
             self.fetchUsersFromFirestore()
         }
     }
 
     @objc fileprivate func handleRefresh() {
         if self.topCardView == nil {
-            fetchUsersFromFirestore()
+            fetchSwipes()
         }
     }
     
@@ -93,7 +112,11 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
-                if user.uid != Auth.auth().currentUser?.uid {
+                
+                let isNotCurrentUser = user.uid != Auth.auth().currentUser?.uid
+                let hasNotSwipedBefore = self.swipes[user.uid!] == nil
+                
+                if isNotCurrentUser && hasNotSwipedBefore {
                     let cardView = self.setupCardFromUser(user: user)
                     
                     previousCardView?.nextCardView = cardView
