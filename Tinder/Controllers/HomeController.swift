@@ -113,7 +113,9 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 let user = User(dictionary: userDictionary)
                 
                 let isNotCurrentUser = user.uid != Auth.auth().currentUser?.uid
-                let hasNotSwipedBefore = self.swipes[user.uid!] == nil
+//                let hasNotSwipedBefore = self.swipes[user.uid!] == nil
+                // for debugging
+                let hasNotSwipedBefore = true
                 
                 if isNotCurrentUser && hasNotSwipedBefore {
                     let cardView = self.setupCardFromUser(user: user)
@@ -155,15 +157,15 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 return
             }
             
-            if didLike == 1 {
-                self.checkIfMatchExists(cardUID: cardUID)
-            }
-            
             if snapshot?.exists == true {
                 Firestore.firestore().collection("swipes").document(uid).updateData(documentData, completion: { (err) in
                     if let err = err {
                         print("Failed to update swipe data:", err)
                         return
+                    }
+                    
+                    if didLike == 1 {
+                        self.checkIfMatchExists(cardUID: cardUID)
                     }
                 })
             } else {
@@ -171,6 +173,10 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                     if let err = err {
                         print("Failed to set swipe data:", err)
                         return
+                    }
+                    
+                    if didLike == 1 {
+                        self.checkIfMatchExists(cardUID: cardUID)
                     }
                 })
             }
@@ -191,14 +197,15 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             let hasMatched = data[uid] == 1
             
             if hasMatched {
-                print("It's matched")
-                let hud = JGProgressHUD(style: .dark)
-                hud.textLabel.text = "Matched!"
-                hud.show(in: self.view)
-                hud.dismiss(afterDelay: 3)
+                self.presentMatchView()
             }
-
         }
+    }
+    
+    fileprivate func presentMatchView() {
+        let matchView = MatchView()
+        view.addSubview(matchView)
+        matchView.fillSuperview()
     }
     
     @objc func handleDislike() {
