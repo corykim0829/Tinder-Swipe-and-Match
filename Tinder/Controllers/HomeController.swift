@@ -157,6 +157,10 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 return
             }
             
+            if didLike == 1 {
+                self.checkIfMatchExists(cardUID: cardUID)
+            }
+            
             if snapshot?.exists == true {
                 Firestore.firestore().collection("swipes").document(uid).updateData(documentData, completion: { (err) in
                     if let err = err {
@@ -164,19 +168,12 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                         return
                     }
                     
-                    if didLike == 1 {
-                        self.checkIfMatchExists(cardUID: cardUID)
-                    }
                 })
             } else {
                 Firestore.firestore().collection("swipes").document(uid).setData(documentData, completion: { (err) in
                     if let err = err {
                         print("Failed to set swipe data:", err)
                         return
-                    }
-                    
-                    if didLike == 1 {
-                        self.checkIfMatchExists(cardUID: cardUID)
                     }
                 })
             }
