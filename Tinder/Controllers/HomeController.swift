@@ -194,14 +194,16 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             let hasMatched = data[uid] == 1
             
             if hasMatched {
-                self.presentMatchView()
+                self.presentMatchView(cardUID: cardUID)
             }
         }
     }
     
-    fileprivate func presentMatchView() {
+    fileprivate func presentMatchView(cardUID: String) {
         let matchView = MatchView()
         view.addSubview(matchView)
+        matchView.cardUID = cardUID
+        matchView.currentUser = self.user
         matchView.fillSuperview()
     }
     

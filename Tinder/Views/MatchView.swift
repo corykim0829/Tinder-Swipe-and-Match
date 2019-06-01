@@ -7,8 +7,33 @@
 //
 
 import UIKit
+import Firebase
 
 class MatchView: UIView {
+    
+    var currentUser: User!
+    
+    var cardUID: String! {
+        didSet {
+            Firestore.firestore().collection("users").document(cardUID).getDocument { (snapshot, err) in
+                if let err = err {
+                    print("Failed to fetch matched user data", err)
+                    return
+                }
+                
+                guard let dictionary = snapshot?.data() else { return }
+                let cardUser = User(dictionary: dictionary)
+                guard let url = URL(string: cardUser.imageUrl1 ?? "") else { return }
+                self.cardUserImageView.sd_setImage(with: url)
+                self.discriptionLable.text = "You and \(cardUser.name ?? "") liked\neach other"
+                
+                guard let currentUserImageUrl = URL(string: self.currentUser.imageUrl1 ?? "") else { return }
+                self.currentUserImageView.sd_setImage(with: currentUserImageUrl, completed: { (_, _, _, _) in
+                    self.setupAnimations()
+                })
+            }
+        }
+    }
     
     fileprivate let itsaMatchImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "itsamatch"))
@@ -65,7 +90,7 @@ class MatchView: UIView {
         
         setupBlurView()
         setupLayout()
-        setupAnimations()
+//        setupAnimations()
         
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.alpha = 1
@@ -83,6 +108,10 @@ class MatchView: UIView {
         
         sendMessageButton.transform = CGAffineTransform(translationX: -500, y: 0)
         keepSwipingButton.transform = CGAffineTransform(translationX: 500, y: 0)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            self.views.forEach({ $0.alpha = 1 })
+        })
         
         UIView.animateKeyframes(withDuration: 1.3, delay: 0, options: .calculationModeCubic, animations: {
             
@@ -108,13 +137,20 @@ class MatchView: UIView {
         }
     }
     
+    lazy var views = [
+        itsaMatchImageView,
+        discriptionLable,
+        currentUserImageView,
+        cardUserImageView,
+        sendMessageButton,
+        keepSwipingButton
+    ]
+    
     fileprivate func setupLayout() {
-        addSubview(itsaMatchImageView)
-        addSubview(discriptionLable)
-        addSubview(currentUserImageView)
-        addSubview(cardUserImageView)
-        addSubview(sendMessageButton)
-        addSubview(keepSwipingButton)
+        views.forEach({
+            $0.alpha = 0
+            addSubview($0)
+        })
         
         let imageWidth: CGFloat = 140
         
