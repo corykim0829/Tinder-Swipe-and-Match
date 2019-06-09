@@ -19,6 +19,8 @@
 		386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88E121ECD1500078F3CE /* CardViewModel.swift */; };
 		387AB645224FE4FB00550DB6 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AB644224FE4FB00550DB6 /* SettingsCell.swift */; };
 		38948935225A329C00D27E35 /* Firebase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38948934225A329C00D27E35 /* Firebase+Utils.swift */; };
+		389A845D22A665600071554C /* MatchesMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389A845C22A665600071554C /* MatchesMessagesController.swift */; };
+		389A845F22AD32F70071554C /* MatchesNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389A845E22AD32F70071554C /* MatchesNavBar.swift */; };
 		38BC323C22369F9F00E143DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38BC323B22369F9F00E143DD /* Assets.xcassets */; };
 		38C47AB5227F12FC0049AC26 /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C47AB4227F12FC0049AC26 /* UserDetailController.swift */; };
 		38CF04E622007D4900175000 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CF04E522007D4900175000 /* Advertiser.swift */; };
@@ -30,7 +32,6 @@
 		38F451EC21E8C60D0031036F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38F451EA21E8C60D0031036F /* Main.storyboard */; };
 		38F451F121E8C60F0031036F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38F451EF21E8C60F0031036F /* LaunchScreen.storyboard */; };
 		38F451FC21E8C60F0031036F /* TinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451FB21E8C60F0031036F /* TinderTests.swift */; };
-		38F4520821E8D7290031036F /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F4520721E8D7290031036F /* Extensions+UIView.swift */; };
 		38F4520D21EA33A70031036F /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F4520C21EA33A70031036F /* HomeBottomControlsStackView.swift */; };
 		38F4520F21EA451B0031036F /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F4520E21EA451B0031036F /* TopNavigationStackView.swift */; };
 		38F46CA5229CF0180021386A /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F46CA4229CF0170021386A /* MatchView.swift */; };
@@ -65,6 +66,8 @@
 		386C88E121ECD1500078F3CE /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		387AB644224FE4FB00550DB6 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		38948934225A329C00D27E35 /* Firebase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Utils.swift"; sourceTree = "<group>"; };
+		389A845C22A665600071554C /* MatchesMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesMessagesController.swift; sourceTree = "<group>"; };
+		389A845E22AD32F70071554C /* MatchesNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesNavBar.swift; sourceTree = "<group>"; };
 		38BC323B22369F9F00E143DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38C47AB4227F12FC0049AC26 /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		38CF04E522007D4900175000 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
@@ -80,7 +83,6 @@
 		38F451F721E8C60F0031036F /* TinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38F451FB21E8C60F0031036F /* TinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderTests.swift; sourceTree = "<group>"; };
 		38F451FD21E8C60F0031036F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38F4520721E8D7290031036F /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		38F4520C21EA33A70031036F /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
 		38F4520E21EA451B0031036F /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		38F46CA4229CF0170021386A /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		386C88DF21ECD0A00078F3CE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				389A845B22A665000071554C /* MatchesMessages */,
 				38C47AB3227F12D90049AC26 /* User Details */,
 				381A9B3C227C7ACB00DE4AB0 /* Registration */,
 				381A9B3B227C7ABB00DE4AB0 /* Login */,
@@ -158,6 +161,14 @@
 				386C88E121ECD1500078F3CE /* CardViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		389A845B22A665000071554C /* MatchesMessages */ = {
+			isa = PBXGroup;
+			children = (
+				389A845C22A665600071554C /* MatchesMessagesController.swift */,
+			);
+			path = MatchesMessages;
 			sourceTree = "<group>";
 		};
 		38C47AB3227F12D90049AC26 /* User Details */ = {
@@ -219,7 +230,6 @@
 		38F4520621E8D7170031036F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				38F4520721E8D7290031036F /* Extensions+UIView.swift */,
 				38948934225A329C00D27E35 /* Firebase+Utils.swift */,
 			);
 			path = Extensions;
@@ -237,6 +247,7 @@
 				38F46CA4229CF0170021386A /* MatchView.swift */,
 				38F46CA6229ECAC70021386A /* SendMessageButton.swift */,
 				38F46CA8229ECD6C0021386A /* KeepSwipingButton.swift */,
+				389A845E22AD32F70071554C /* MatchesNavBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,13 +386,11 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/LBTATools/LBTATools.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -393,13 +402,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTATools.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -464,11 +471,11 @@
 				38D4C9B4224015A6009E2679 /* RegistrationViewModel.swift in Sources */,
 				38C47AB5227F12FC0049AC26 /* UserDetailController.swift in Sources */,
 				38D4C9B2223D48E3009E2679 /* CustomTextField.swift in Sources */,
+				389A845D22A665600071554C /* MatchesMessagesController.swift in Sources */,
 				38F4520D21EA33A70031036F /* HomeBottomControlsStackView.swift in Sources */,
 				38CF04E622007D4900175000 /* Advertiser.swift in Sources */,
 				38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */,
 				38FD7FEB2259230800D4489A /* AgeRangeCell.swift in Sources */,
-				38F4520821E8D7290031036F /* Extensions+UIView.swift in Sources */,
 				38F46CA5229CF0180021386A /* MatchView.swift in Sources */,
 				38948935225A329C00D27E35 /* Firebase+Utils.swift in Sources */,
 				386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */,
@@ -480,6 +487,7 @@
 				38D4C9B0223D1E92009E2679 /* RegistrationController.swift in Sources */,
 				386C88DD21ECC2BE0078F3CE /* User.swift in Sources */,
 				38F46CA9229ECD6C0021386A /* KeepSwipingButton.swift in Sources */,
+				389A845F22AD32F70071554C /* MatchesNavBar.swift in Sources */,
 				381A9B3A227C6AC100DE4AB0 /* LoginViewModel.swift in Sources */,
 				387AB645224FE4FB00550DB6 /* SettingsCell.swift in Sources */,
 				383AA8DD22841A9D0096E0BF /* SwipingPhotosController.swift in Sources */,

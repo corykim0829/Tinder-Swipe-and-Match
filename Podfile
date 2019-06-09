@@ -11,10 +11,10 @@ target 'Tinder' do
   pod 'Firebase/Auth’
   pod 'Firebase/Storage’
   pod 'Firebase/Core’
-  pod 'GoogleAppMeasurement', '~> 5.2.0'
-  pod 'SDWebImage','~>4.4.2’
-  pod 'JGProgressHUD','~>2.0.3'
-  
+  pod 'GoogleAppMeasurement'
+  pod 'SDWebImage'
+  pod 'JGProgressHUD'
+  pod 'LBTATools' 
 
   target 'TinderTests' do
     inherit! :search_paths
