@@ -96,7 +96,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         let minAge = user?.minSeekingAge ?? SettingsController.defaultMinSeekingAge
         let maxAge = user?.maxSeekingAge ?? SettingsController.defaultMaxSeekingAge
         
-        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
+        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge).limit(to: 10)
         query.getDocuments { (snapshot, err) in
             self.hud.dismiss()
             if let err = err {
@@ -115,6 +115,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
                 
+                self.users[user.uid ?? ""] = user
+                
                 let isNotCurrentUser = user.uid != Auth.auth().currentUser?.uid
 //                let hasNotSwipedBefore = self.swipes[user.uid!] == nil
                 // for debugging
@@ -132,7 +134,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 }
             })
             
-            if self.cardsDeckView.subviews.count == 0 {
+            if self.cardsDeckView.subviews.isEmpty {
                 let hud = JGProgressHUD(style: .dark)
                 hud.indicatorView = nil
                 hud.textLabel.text = "You swiped all!"
@@ -141,6 +143,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             }
         }
     }
+    
+    var users = [String: User]()
     
     var topCardView: CardView?
     
@@ -198,6 +202,17 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             
             if hasMatched {
                 self.presentMatchView(cardUID: cardUID)
+                
+                guard let cardUser = self.users[cardUID] else { return }
+                
+                let cardUserData: [String: Any] = ["name": cardUser.name ?? "", "profileImageUrl": cardUser.imageUrl1 ?? "", "uid": cardUID, "timestamp": Timestamp(date: Date())]
+                Firestore.firestore().collection("matches_messages").document(uid).collection("matches").document(cardUID).setData(cardUserData)
+                
+                guard let currentUser = self.user else { return }
+                
+                let currentUserData: [String: Any] = ["name": currentUser.name ?? "", "profileImageUrl": currentUser.imageUrl1 ?? "", "uid": uid, "timestamp": Timestamp(date: Date())]
+                Firestore.firestore().collection("matches_messages").document(cardUID).collection("matches").document(uid).setData(currentUserData)
+                
             }
         }
     }
