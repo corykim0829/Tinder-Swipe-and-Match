@@ -13,6 +13,8 @@
 		38142BE52243C95300015EA8 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38142BE42243C95300015EA8 /* Bindable.swift */; };
 		381A9B38227C668700DE4AB0 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381A9B37227C668700DE4AB0 /* LoginController.swift */; };
 		381A9B3A227C6AC100DE4AB0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381A9B39227C6AC100DE4AB0 /* LoginViewModel.swift */; };
+		3831125322C3C36E00516511 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831125222C3C36E00516511 /* MessageCell.swift */; };
+		3831125522C3C3A400516511 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831125422C3C3A400516511 /* Message.swift */; };
 		383AA8DD22841A9D0096E0BF /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AA8DC22841A9D0096E0BF /* SwipingPhotosController.swift */; };
 		3855FAB921EB07A1009D81EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855FAB821EB07A1009D81EF /* CardView.swift */; };
 		386C88DD21ECC2BE0078F3CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88DC21ECC2BE0078F3CE /* User.swift */; };
@@ -62,6 +64,8 @@
 		38142BE42243C95300015EA8 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		381A9B37227C668700DE4AB0 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		381A9B39227C6AC100DE4AB0 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		3831125222C3C36E00516511 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		3831125422C3C3A400516511 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		383AA8DC22841A9D0096E0BF /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		3855FAB821EB07A1009D81EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		386C88DC21ECC2BE0078F3CE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 			children = (
 				386C88DC21ECC2BE0078F3CE /* User.swift */,
 				38CF04E522007D4900175000 /* Advertiser.swift */,
+				3831125422C3C3A400516511 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 			children = (
 				389A845E22AD32F70071554C /* MatchesNavBar.swift */,
 				389A846322B1029C0071554C /* ChatLogNavBar.swift */,
+				3831125222C3C36E00516511 /* MessageCell.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 				38F451E921E8C60D0031036F /* HomeController.swift in Sources */,
 				38D4C9B4224015A6009E2679 /* RegistrationViewModel.swift in Sources */,
 				38C47AB5227F12FC0049AC26 /* UserDetailController.swift in Sources */,
+				3831125522C3C3A400516511 /* Message.swift in Sources */,
 				38D4C9B2223D48E3009E2679 /* CustomTextField.swift in Sources */,
 				389A845D22A665600071554C /* MatchesMessagesController.swift in Sources */,
 				38F4520D21EA33A70031036F /* HomeBottomControlsStackView.swift in Sources */,
@@ -493,6 +500,7 @@
 				38F46CA5229CF0180021386A /* MatchView.swift in Sources */,
 				389A846422B1029C0071554C /* ChatLogNavBar.swift in Sources */,
 				38948935225A329C00D27E35 /* Firebase+Utils.swift in Sources */,
+				3831125322C3C36E00516511 /* MessageCell.swift in Sources */,
 				386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */,
 				3855FAB921EB07A1009D81EF /* CardView.swift in Sources */,
 				38F46CA7229ECAC70021386A /* SendMessageButton.swift in Sources */,
