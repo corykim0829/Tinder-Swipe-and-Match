@@ -10,7 +10,7 @@ import LBTATools
 
 struct Message {
     let text: String
-    let isMessageFromCurrentLoggedUser: Bool
+    let isFromCurrentLoggedUser: Bool
 }
 
 class MessageCell: LBTAListCell<Message> {
@@ -18,7 +18,7 @@ class MessageCell: LBTAListCell<Message> {
     let textView: UITextView = {
         let tv = UITextView()
         tv.backgroundColor = .clear
-        tv.font = .systemFont(ofSize: 20)
+        tv.font = .systemFont(ofSize: 18)
         tv.isScrollEnabled = false
         tv.isEditable = false
         return tv
@@ -30,7 +30,7 @@ class MessageCell: LBTAListCell<Message> {
         didSet {
             textView.text = item.text
             
-            if item.isMessageFromCurrentLoggedUser {
+            if item.isFromCurrentLoggedUser {
                 anchoredContstraints.trailing?.isActive = true
                 anchoredContstraints.leading?.isActive = false
                 bubbleContainer.backgroundColor = #colorLiteral(red: 1, green: 0.423529923, blue: 0.4469795823, alpha: 1)
@@ -38,6 +38,8 @@ class MessageCell: LBTAListCell<Message> {
             } else {
                 anchoredContstraints.trailing?.isActive = false
                 anchoredContstraints.leading?.isActive = true
+                bubbleContainer.backgroundColor = #colorLiteral(red: 0.9069489837, green: 0.9015577435, blue: 0.9110931754, alpha: 1)
+                textView.textColor = .black
             }
         }
     }
@@ -55,7 +57,6 @@ class MessageCell: LBTAListCell<Message> {
         anchoredContstraints.trailing?.constant = -20
         
         bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 285).isActive = true
-        
         
         bubbleContainer.addSubview(textView)
         textView.fillSuperview(padding: .init(top: 4, left: 12, bottom: 4, right: 12))
