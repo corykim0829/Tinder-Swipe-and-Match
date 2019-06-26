@@ -79,12 +79,12 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         super.viewDidLoad()
         
         items = [
-            .init(text: "For this lesson, let's talk all about auto sizing message cells and how to shift alignment from left to right.  Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isMessageFromCurrentLoggedUser: false),
-            .init(text: "Hello I'm 태평양 거북이", isMessageFromCurrentLoggedUser: false),
-            .init(text: "Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isMessageFromCurrentLoggedUser: true),
-            .init(text: "I'm a turtle", isMessageFromCurrentLoggedUser: false),
-            .init(text: "For this lesson, let's talk all about auto sizing message cells and how to shift alignment from left to right.  Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isMessageFromCurrentLoggedUser: true),
-            .init(text: "And I'm a really cute turtle", isMessageFromCurrentLoggedUser: false)
+            .init(text: "For this lesson, let's talk all about auto sizing message cells and how to shift alignment from left to right.  Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isFromCurrentLoggedUser: false),
+            .init(text: "Hello I'm 태평양 거북이", isFromCurrentLoggedUser: false),
+            .init(text: "Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isFromCurrentLoggedUser: true),
+            .init(text: "I'm a turtle", isFromCurrentLoggedUser: false),
+            .init(text: "For this lesson, let's talk all about auto sizing message cells and how to shift alignment from left to right.  Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isFromCurrentLoggedUser: true),
+            .init(text: "And I'm a really cute turtle", isFromCurrentLoggedUser: false)
             
         ]
         
