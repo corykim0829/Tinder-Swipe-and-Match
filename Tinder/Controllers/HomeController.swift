@@ -28,7 +28,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         bottomControls.likeButton.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         bottomControls.dislikeButton.addTarget(self, action: #selector(handleDislike), for: .touchUpInside)
-                
+        
         setupLayout()
         fetchCurrentUser()
     }
@@ -225,6 +225,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         view.addSubview(matchView)
         matchView.cardUID = cardUID
         matchView.currentUser = self.user
+        matchView.keepSwipingButton.addTarget(self, action: #selector(handleKeepSwiping), for: .touchUpInside)
+        matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
         matchView.fillSuperview()
     }
     
@@ -320,5 +322,21 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         overallStackView.isLayoutMarginsRelativeArrangement = true
         overallStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         overallStackView.bringSubviewToFront(cardsDeckView)
+    }
+    
+    @objc fileprivate func handleKeepSwiping(matchView: UIView) {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            matchView.superview?.alpha = 0
+        }) { (_) in
+            matchView.superview?.removeFromSuperview()
+        }
+    }
+    
+    @objc fileprivate func handleSendMessage(matchView: UIView) {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            matchView.superview?.alpha = 0
+        }) { (_) in
+            matchView.superview?.removeFromSuperview()
+        }
     }
 }

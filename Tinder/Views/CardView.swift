@@ -58,7 +58,7 @@ class CardView: UIView {
     // encapsulation
 //    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
     // replace it with a UIPageViewController component which is our SwipingPhotoController
-    let swipingPhotoController = SwipingPhotosController(isCardViewMode: true)
+    let swipingPhotoController = SwipingPhotosController(isCardViewModel: true)
     let gradientLayer = CAGradientLayer()
     fileprivate let informationLabel = UILabel()
     

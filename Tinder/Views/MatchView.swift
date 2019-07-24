@@ -69,7 +69,7 @@ class MatchView: UIView {
         return imageView
     }()
     
-    fileprivate let sendMessageButton: UIButton = {
+    let sendMessageButton: UIButton = {
         let button = SendMessageButton(type: .system)
         button.setTitle("SEND MESSAGE", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -77,7 +77,7 @@ class MatchView: UIView {
         return button
     }()
     
-    fileprivate let keepSwipingButton: UIButton = {
+    let keepSwipingButton: UIButton = {
         let button = KeepSwipingButton(type: .system)
         button.setTitle("Keep Swiping", for: .normal)
         button.setTitleColor(.white, for: .normal)
