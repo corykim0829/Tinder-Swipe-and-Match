@@ -7,6 +7,7 @@
 //
 
 import LBTATools
+import Firebase
 
 class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionViewDelegateFlowLayout {
     
@@ -20,108 +21,104 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         super.init()
     }
     
+    fileprivate func fetchMessages() {
+        print("Fetching chat log")
+        
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        let query = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid).order(by: "timestamp")
+        
+        query.addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Failed to fetch messages", err)
+                return
+            }
+            
+            querySnapshot?.documentChanges.forEach({ (change) in
+                if change.type == .added {
+                    let dictionary = change.document.data()
+                    self.items.append(.init(dictionary: dictionary))
+                }
+            })
+            self.collectionView.reloadData()
+            self.collectionView.scrollToItem(at: [0, self.items.count - 1], at: .bottom, animated: true)
+        }
+        
+//        query.getDocuments { (querySnapshot, err) in
+//
+//            if let err = err {
+//                print("Failed to fetch messages", err)
+//                return
+//            }
+//
+//            querySnapshot?.documents.forEach({ (documentSnapshot) in
+//                print(documentSnapshot.data())
+//                self.items.append(Message(dictionary: documentSnapshot.data()))
+//            })
+//
+//            self.collectionView.reloadData()
+//        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardDidShowNotification, object: nil)
         collectionView.keyboardDismissMode = .interactive
         
-        items = [
-            .init(text: "For this lesson, let's talk all about auto sizing message cells and how to shift alignment from left to right.  Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isFromCurrentLoggedUser: false),
-            .init(text: "Hello I'm 태평양 거북이", isFromCurrentLoggedUser: false),
-            .init(text: "Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isFromCurrentLoggedUser: true),
-            .init(text: "I'm a turtle", isFromCurrentLoggedUser: false),
-            .init(text: "For this lesson, let's talk all about auto sizing message cells and how to shift alignment from left to right.  Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isFromCurrentLoggedUser: true),
-            .init(text: "And I'm a really cute turtle", isFromCurrentLoggedUser: false)
-            
-        ]
+        fetchMessages()
         
         setupUI()
     }
     
-    // input accessory view
+    @objc fileprivate func handleKeyboardShow() {
+        self.collectionView.scrollToItem(at: [0, items.count - 1], at: .bottom, animated: true)
+    }
     
-    class CustomInputAccessoryView: UIView {
+    lazy var customInputView: CustomInputAccessoryView = {
         
-        let textView = UITextView()
+        let civ = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
+        // limit input view height
+//        civ.heightAnchor.constraint(lessThanOrEqualToConstant: 110).isActive = true
+        civ.sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        return civ
+    }()
+    
+    @objc fileprivate func handleSend() {
+        print(customInputView.textView.text ?? "")
+       
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        let collection = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid)
         
-        let sendButton = UIButton(title: "SEND", titleColor: .black, font: .boldSystemFont(ofSize: 14), target: nil, action: nil)
+        let data = ["text": customInputView.textView.text ?? "", "fromId": currentUserId, "toId": match.uid, "timestamp": Timestamp(date: Date())] as [String : Any]
         
-        let placeholderLabel = UILabel(text: "Enter Message", font: .systemFont(ofSize: 18), textColor: .lightGray)
-        
-        // ??
-        override var intrinsicContentSize: CGSize {
-            return .zero
+        collection.addDocument(data: data) { (err) in
+            if let err = err {
+                print("Failed to save message into Firestore", err)
+                return
+            }
+            
+            print("successfully saved msg into Firestore")
+            self.customInputView.textView.text = nil
+            self.customInputView.placeholderLabel.isHidden = false
         }
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            backgroundColor = .white
-            setupShadow(opacity: 0.1, radius: 8, offset: .init(width: 0, height: -8), color: .lightGray)
-            autoresizingMask = .flexibleHeight
-            
-            textView.font = .systemFont(ofSize: 18)
-            textView.isScrollEnabled = false
-            
-            sendButton.constrainHeight(60)
-            sendButton.constrainWidth(60)
-            
-            let stackView = UIStackView(arrangedSubviews: [textView, sendButton])
-            stackView.alignment = .center
-            stackView.isLayoutMarginsRelativeArrangement = true
-            
-            addSubview(stackView)
-            stackView.fillSuperview()
-            stackView.withMargins(.init(top: 2, left: 16, bottom: 2, right: 16))
-            
-            addSubview(placeholderLabel)
-            placeholderLabel.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: sendButton.leadingAnchor, padding: .init(top: 0, left: 22, bottom: 0, right: 0))
-            placeholderLabel.centerYAnchor.constraint(equalTo: sendButton.centerYAnchor).isActive = true
-            
-            //        hstack(textView,
-            //               sendButton.withSize(.init(width: 60, height: 60)),
-            //               alignment: .center
-            //               ).withMargins(.init(top: 0, left: 16, bottom: 0, right: 16))
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(handleTextChange), name: UITextView.textDidChangeNotification, object: nil)
-        }
+        let toCollection = Firestore.firestore().collection("matches_messages").document(match.uid).collection(currentUserId)
         
-        @objc fileprivate func handleTextChange() {
-            placeholderLabel.isHidden = textView.text.count != 0
+        toCollection.addDocument(data: data) { (err) in
+            if let err = err {
+                print("Failed to save message into Firestore", err)
+                return
+            }
             
-            // How to scrollEnable
-            
-//            let numberOfLines = (textView.contentSize.height / (textView.font?.lineHeight)!)
-//            if numberOfLines >= 4 {
-//                textView.isScrollEnabled = true
-//                textView.contentSize.height = 96
-//                print("number of lines:", numberOfLines)
-//            } else {
-//                textView.isScrollEnabled = false
-//            }
-        }
-        
-        deinit {
-            // because of retain cycle
-            NotificationCenter.default.removeObserver(self)
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
+            print("successfully saved msg into Firestore")
+            self.customInputView.textView.text = nil
+            self.customInputView.placeholderLabel.isHidden = false
         }
     }
     
-    lazy var redView: UIView = {
-        
-        let customInputAccessoryView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
-        // limit input view height
-        customInputAccessoryView.heightAnchor.constraint(lessThanOrEqualToConstant: 110).isActive = true
-        
-        return customInputAccessoryView
-    }()
-    
     override var inputAccessoryView: UIView? {
         get {
-            return redView
+            return customInputView
         }
     }
     

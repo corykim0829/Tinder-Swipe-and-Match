@@ -31,6 +31,7 @@
 		38D4C9B0223D1E92009E2679 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D4C9AF223D1E92009E2679 /* RegistrationController.swift */; };
 		38D4C9B2223D48E3009E2679 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D4C9B1223D48E3009E2679 /* CustomTextField.swift */; };
 		38D4C9B4224015A6009E2679 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D4C9B3224015A6009E2679 /* RegistrationViewModel.swift */; };
+		38D84D522339F0A000FB6F91 /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D84D512339F0A000FB6F91 /* CustomInputAccessoryView.swift */; };
 		38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451E621E8C60D0031036F /* AppDelegate.swift */; };
 		38F451E921E8C60D0031036F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F451E821E8C60D0031036F /* HomeController.swift */; };
 		38F451EC21E8C60D0031036F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38F451EA21E8C60D0031036F /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 		38D4C9AF223D1E92009E2679 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		38D4C9B1223D48E3009E2679 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		38D4C9B3224015A6009E2679 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		38D84D512339F0A000FB6F91 /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
 		38F451E321E8C60D0031036F /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38F451E621E8C60D0031036F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38F451E821E8C60D0031036F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				389A845E22AD32F70071554C /* MatchesNavBar.swift */,
 				389A846322B1029C0071554C /* ChatLogNavBar.swift */,
 				3831125222C3C36E00516511 /* MessageCell.swift */,
+				38D84D512339F0A000FB6F91 /* CustomInputAccessoryView.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				38D4C9B4224015A6009E2679 /* RegistrationViewModel.swift in Sources */,
 				38C47AB5227F12FC0049AC26 /* UserDetailController.swift in Sources */,
 				3831125522C3C3A400516511 /* Message.swift in Sources */,
+				38D84D522339F0A000FB6F91 /* CustomInputAccessoryView.swift in Sources */,
 				38D4C9B2223D48E3009E2679 /* CustomTextField.swift in Sources */,
 				389A845D22A665600071554C /* MatchesMessagesController.swift in Sources */,
 				38F4520D21EA33A70031036F /* HomeBottomControlsStackView.swift in Sources */,
