@@ -64,10 +64,16 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardDidShowNotification, object: nil)
         collectionView.keyboardDismissMode = .interactive
+        collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         
         fetchMessages()
         
         setupUI()
+    }
+    
+    @objc fileprivate func handleTapDismiss() {
+//        self.collectionView.endEditing(true)
+//        self.view.endEditing(true)
     }
     
     @objc fileprivate func handleKeyboardShow() {
