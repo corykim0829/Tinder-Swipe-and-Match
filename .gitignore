@@ -68,6 +68,7 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 # Google Firebase
+Tinder/GoogleService-Info.plist
 Podfile
 Podfile.lock
 
