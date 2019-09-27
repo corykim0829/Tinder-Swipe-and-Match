@@ -25,6 +25,8 @@
 		389A845F22AD32F70071554C /* MatchesNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389A845E22AD32F70071554C /* MatchesNavBar.swift */; };
 		389A846122B0F0F00071554C /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389A846022B0F0EF0071554C /* ChatLogController.swift */; };
 		389A846422B1029C0071554C /* ChatLogNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389A846322B1029C0071554C /* ChatLogNavBar.swift */; };
+		38BBD287233E12BD0061C073 /* NewMatchesHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BBD286233E12BD0061C073 /* NewMatchesHorizontalController.swift */; };
+		38BBD289233E12F50061C073 /* MatchesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BBD288233E12F50061C073 /* MatchesHeader.swift */; };
 		38BC323C22369F9F00E143DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38BC323B22369F9F00E143DD /* Assets.xcassets */; };
 		38C47AB5227F12FC0049AC26 /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C47AB4227F12FC0049AC26 /* UserDetailController.swift */; };
 		38CF04E622007D4900175000 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CF04E522007D4900175000 /* Advertiser.swift */; };
@@ -79,6 +81,8 @@
 		389A845E22AD32F70071554C /* MatchesNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesNavBar.swift; sourceTree = "<group>"; };
 		389A846022B0F0EF0071554C /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		389A846322B1029C0071554C /* ChatLogNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogNavBar.swift; sourceTree = "<group>"; };
+		38BBD286233E12BD0061C073 /* NewMatchesHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchesHorizontalController.swift; sourceTree = "<group>"; };
+		38BBD288233E12F50061C073 /* MatchesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesHeader.swift; sourceTree = "<group>"; };
 		38BC323B22369F9F00E143DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38C47AB4227F12FC0049AC26 /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		38CF04E522007D4900175000 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 			children = (
 				389A845C22A665600071554C /* MatchesMessagesController.swift */,
 				389A846022B0F0EF0071554C /* ChatLogController.swift */,
+				38BBD286233E12BD0061C073 /* NewMatchesHorizontalController.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				3831125222C3C36E00516511 /* MessageCell.swift */,
 				38D84D512339F0A000FB6F91 /* CustomInputAccessoryView.swift */,
 				38FB8645233CC8E200590747 /* MatchCell.swift */,
+				38BBD288233E12F50061C073 /* MatchesHeader.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -507,6 +513,7 @@
 				38CF04E622007D4900175000 /* Advertiser.swift in Sources */,
 				38F451E721E8C60D0031036F /* AppDelegate.swift in Sources */,
 				38FD7FEB2259230800D4489A /* AgeRangeCell.swift in Sources */,
+				38BBD289233E12F50061C073 /* MatchesHeader.swift in Sources */,
 				38F46CA5229CF0180021386A /* MatchView.swift in Sources */,
 				389A846422B1029C0071554C /* ChatLogNavBar.swift in Sources */,
 				38948935225A329C00D27E35 /* Firebase+Utils.swift in Sources */,
@@ -526,6 +533,7 @@
 				381A9B3A227C6AC100DE4AB0 /* LoginViewModel.swift in Sources */,
 				387AB645224FE4FB00550DB6 /* SettingsCell.swift in Sources */,
 				389A846122B0F0F00071554C /* ChatLogController.swift in Sources */,
+				38BBD287233E12BD0061C073 /* NewMatchesHorizontalController.swift in Sources */,
 				383AA8DD22841A9D0096E0BF /* SwipingPhotosController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
