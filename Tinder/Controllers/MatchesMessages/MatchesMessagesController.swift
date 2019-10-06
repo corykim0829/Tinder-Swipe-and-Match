@@ -8,8 +8,10 @@
 
 import LBTATools
 import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
-class RecentMessageCell: LBTAListCell<UIColor> {
+class RecentMessageCell: LBTAListCell<RecentMessage> {
     
     let userImageView = UIImageView(image: #imageLiteral(resourceName: "kelly1"), contentMode: .scaleAspectFill)
     
@@ -18,9 +20,11 @@ class RecentMessageCell: LBTAListCell<UIColor> {
     let messageTextLabel = UILabel(text: "some texts from the most recent message from user", font: .systemFont(ofSize: 14), textColor: .gray, textAlignment: .left, numberOfLines: 2)
     
     
-    override var item: UIColor! {
+    override var item: RecentMessage! {
         didSet {
-//            backgroundColor = item
+            userImageView.sd_setImage(with: URL(string: item.profileImageUrl), completed: nil)
+            usernameLabel.text = item.name
+            messageTextLabel.text = item.text
         }
     }
     
@@ -39,7 +43,48 @@ class RecentMessageCell: LBTAListCell<UIColor> {
     }
 }
 
-class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, UIColor, MatchesHeader>, UICollectionViewDelegateFlowLayout {
+struct RecentMessage {
+    let uid, name, profileImageUrl, text: String
+    let timestamp: Timestamp
+    
+    init(dictionary: [String: Any]) {
+        self.uid = dictionary["uid"] as? String ?? ""
+        self.name = dictionary["name"] as? String ?? ""
+        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+        self.text = dictionary["text"] as? String ?? ""
+        
+        self.timestamp = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
+    }
+}
+
+class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, RecentMessage, MatchesHeader>, UICollectionViewDelegateFlowLayout {
+    
+    var recentMessagesDictionary = [String: RecentMessage]()
+    
+    fileprivate func fetchRecentMessages() {
+            guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages").addSnapshotListener { (querySnapshot, err) in
+            // check err
+            
+            querySnapshot?.documentChanges.forEach({ (change) in
+                if change.type == .added || change.type == .modified {
+                    let dictionary = change.document.data()
+                    let recentMessage = RecentMessage(dictionary: dictionary)
+                    self.recentMessagesDictionary[recentMessage.uid] = recentMessage
+                }
+            })
+            
+            self.resetItems()
+        }
+    }
+    
+    fileprivate func resetItems() {
+        let values = Array(recentMessagesDictionary.values)
+        items = values.sorted(by: { (rm1, rm2) -> Bool in
+            return rm1.timestamp.compare(rm2.timestamp) == .orderedDescending
+        })
+        collectionView.reloadData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
@@ -68,7 +113,11 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        items = [.red, .blue, .green, .yellow, .purple, .red, .blue, .green, .yellow, .purple]
+        fetchRecentMessages()
+        
+        items = [
+//            .init(uid: "7uATkYNejZU3A7p2t8OpYnpuBu22", name: "noname", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/tinderswipematchfirestor-afc99.appspot.com/o/images%2F55CA3D91-ACA5-464B-96EC-3A1E6A94EED3?alt=media&token=d47cb96b-b10c-4e65-af67-20ea8a1941c0", text: "코리는 코리다", timestamp: Timestamp(date: .init()))
+        ]
         
         collectionView.backgroundColor = .white
         
@@ -83,16 +132,6 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, UIC
         let statusBarCoverView = UIView(backgroundColor: .white)
         view.addSubview(statusBarCoverView)
         statusBarCoverView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor)
-        
-        fetchRecentMessages()
-    }
-    
-    fileprivate func fetchRecentMessages() {
-        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        
-        let query = Firestore.firestore().collection("matches_messages").document(currentUserId)
-        
-//        query
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
