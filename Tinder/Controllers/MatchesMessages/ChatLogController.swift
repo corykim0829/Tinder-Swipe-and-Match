@@ -93,6 +93,22 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         print(customInputView.textView.text ?? "")
        
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        saveToFromMessages(currentUserId: currentUserId)
+
+    }
+    
+    fileprivate func saveToFromRecentMessages(currentUserId: String) {
+        let fromCollection = Firestore.firestore().collection("matches_messages").document("recent_messages").collection(match.uid)
+        
+//        let uid, name, profileImageUrl, text: String
+//        let timestamp: Timestamp
+        
+//        let data: [String: Any] = ["uid": currentUserId, "name": "", "text": customInputView.textView.text ?? "", "profileImageUrl": "", "timestamp": Timestamp(date: Data())]
+        
+//        let recentMessage = RecentMessage(dictionary: data)
+    }
+    
+    fileprivate func saveToFromMessages(currentUserId: String) {
         let collection = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid)
         
         let data = ["text": customInputView.textView.text ?? "", "fromId": currentUserId, "toId": match.uid, "timestamp": Timestamp(date: Date())] as [String : Any]
