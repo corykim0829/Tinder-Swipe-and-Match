@@ -22,9 +22,8 @@ class NewMatchesHorizontalController: LBTAListController<MatchCell, Match>, UICo
         return .init(width: 100, height: view.frame.height)
     }
     
-    // ??
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 0, left: 4, bottom: 0, right: 16)
+        return .init(top: 0, left: 8, bottom: 0, right: 0)
     }
     
     override func viewDidLoad() {

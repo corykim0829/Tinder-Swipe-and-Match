@@ -43,6 +43,7 @@ class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSou
         
         var paddingTop: CGFloat = 8
         if !isCardViewModel {
+//            UIWindowScene().statusBarManager?.statusBarFrame.height ??
             paddingTop += UIApplication.shared.statusBarFrame.height
         }
         

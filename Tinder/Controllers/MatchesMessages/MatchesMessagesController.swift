@@ -11,52 +11,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-class RecentMessageCell: LBTAListCell<RecentMessage> {
-    
-    let userImageView = UIImageView(image: #imageLiteral(resourceName: "kelly1"), contentMode: .scaleAspectFill)
-    
-    let usernameLabel = UILabel(text: "USERNAME", font: .systemFont(ofSize: 16, weight: .bold), textColor: .darkGray, numberOfLines: 1)
-    
-    let messageTextLabel = UILabel(text: "some texts from the most recent message from user", font: .systemFont(ofSize: 14), textColor: .gray, textAlignment: .left, numberOfLines: 2)
-    
-    
-    override var item: RecentMessage! {
-        didSet {
-            userImageView.sd_setImage(with: URL(string: item.profileImageUrl), completed: nil)
-            usernameLabel.text = item.name
-            messageTextLabel.text = item.text
-        }
-    }
-    
-    override func setupViews() {
-        super.setupViews()
-        
-        userImageView.layer.cornerRadius = 84 / 2
-        
-        hstack(userImageView.withWidth(84).withHeight(84),
-               stack(usernameLabel, messageTextLabel),
-               spacing: 16,
-               alignment: .center
-               ).padLeft(16).padRight(16)
-        
-        addSeparatorView(leadingAnchor: usernameLabel.leadingAnchor)
-    }
-}
-
-struct RecentMessage {
-    let uid, name, profileImageUrl, text: String
-    let timestamp: Timestamp
-    
-    init(dictionary: [String: Any]) {
-        self.uid = dictionary["uid"] as? String ?? ""
-        self.name = dictionary["name"] as? String ?? ""
-        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
-        self.text = dictionary["text"] as? String ?? ""
-        
-        self.timestamp = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
-    }
-}
-
 class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, RecentMessage, MatchesHeader>, UICollectionViewDelegateFlowLayout {
     
     var recentMessagesDictionary = [String: RecentMessage]()
@@ -115,10 +69,6 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, Rec
         
         fetchRecentMessages()
         
-        items = [
-//            .init(uid: "7uATkYNejZU3A7p2t8OpYnpuBu22", name: "noname", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/tinderswipematchfirestor-afc99.appspot.com/o/images%2F55CA3D91-ACA5-464B-96EC-3A1E6A94EED3?alt=media&token=d47cb96b-b10c-4e65-af67-20ea8a1941c0", text: "코리는 코리다", timestamp: Timestamp(date: .init()))
-        ]
-        
         collectionView.backgroundColor = .white
         
         customNavBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
@@ -127,7 +77,7 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, Rec
         customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: 120))
         
         collectionView.contentInset.top = 140
-        collectionView.scrollIndicatorInsets.top = 140
+        collectionView.verticalScrollIndicatorInsets.top = 140
         
         let statusBarCoverView = UIView(backgroundColor: .white)
         view.addSubview(statusBarCoverView)

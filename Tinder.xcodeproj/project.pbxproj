@@ -20,6 +20,8 @@
 		386C88DD21ECC2BE0078F3CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88DC21ECC2BE0078F3CE /* User.swift */; };
 		386C88E221ECD1500078F3CE /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C88E121ECD1500078F3CE /* CardViewModel.swift */; };
 		387AB645224FE4FB00550DB6 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AB644224FE4FB00550DB6 /* SettingsCell.swift */; };
+		388F119D2355A0FE00C6FE3B /* RecentMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388F119C2355A0FE00C6FE3B /* RecentMessage.swift */; };
+		388F119F2355A12C00C6FE3B /* RecentMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388F119E2355A12C00C6FE3B /* RecentMessageCell.swift */; };
 		38948935225A329C00D27E35 /* Firebase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38948934225A329C00D27E35 /* Firebase+Utils.swift */; };
 		389A845D22A665600071554C /* MatchesMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389A845C22A665600071554C /* MatchesMessagesController.swift */; };
 		389A845F22AD32F70071554C /* MatchesNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389A845E22AD32F70071554C /* MatchesNavBar.swift */; };
@@ -76,6 +78,8 @@
 		386C88DC21ECC2BE0078F3CE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		386C88E121ECD1500078F3CE /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		387AB644224FE4FB00550DB6 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		388F119C2355A0FE00C6FE3B /* RecentMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMessage.swift; sourceTree = "<group>"; };
+		388F119E2355A12C00C6FE3B /* RecentMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMessageCell.swift; sourceTree = "<group>"; };
 		38948934225A329C00D27E35 /* Firebase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Utils.swift"; sourceTree = "<group>"; };
 		389A845C22A665600071554C /* MatchesMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesMessagesController.swift; sourceTree = "<group>"; };
 		389A845E22AD32F70071554C /* MatchesNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesNavBar.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				38CF04E522007D4900175000 /* Advertiser.swift */,
 				3831125422C3C3A400516511 /* Message.swift */,
 				38FB8643233CC8B900590747 /* Match.swift */,
+				388F119C2355A0FE00C6FE3B /* RecentMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				38D84D512339F0A000FB6F91 /* CustomInputAccessoryView.swift */,
 				38FB8645233CC8E200590747 /* MatchCell.swift */,
 				38BBD288233E12F50061C073 /* MatchesHeader.swift */,
+				388F119E2355A12C00C6FE3B /* RecentMessageCell.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -360,9 +366,11 @@
 				TargetAttributes = {
 					38F451E221E8C60D0031036F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1100;
 					};
 					38F451F621E8C60F0031036F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1100;
 						TestTargetID = 38F451E221E8C60D0031036F;
 					};
 				};
@@ -508,6 +516,7 @@
 				3831125522C3C3A400516511 /* Message.swift in Sources */,
 				38D84D522339F0A000FB6F91 /* CustomInputAccessoryView.swift in Sources */,
 				38D4C9B2223D48E3009E2679 /* CustomTextField.swift in Sources */,
+				388F119D2355A0FE00C6FE3B /* RecentMessage.swift in Sources */,
 				389A845D22A665600071554C /* MatchesMessagesController.swift in Sources */,
 				38F4520D21EA33A70031036F /* HomeBottomControlsStackView.swift in Sources */,
 				38CF04E622007D4900175000 /* Advertiser.swift in Sources */,
@@ -524,6 +533,7 @@
 				380D6710224E2D0C00E87EEE /* SettingsController.swift in Sources */,
 				381A9B38227C668700DE4AB0 /* LoginController.swift in Sources */,
 				38F4520F21EA451B0031036F /* TopNavigationStackView.swift in Sources */,
+				388F119F2355A12C00C6FE3B /* RecentMessageCell.swift in Sources */,
 				38FB8644233CC8B900590747 /* Match.swift in Sources */,
 				38FB8646233CC8E200590747 /* MatchCell.swift in Sources */,
 				38D4C9B0223D1E92009E2679 /* RegistrationController.swift in Sources */,
@@ -627,7 +637,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -682,7 +692,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -700,13 +710,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N2GAL8582Q;
 				INFOPLIST_FILE = Tinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.corykim.Tinder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.corykim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -719,13 +730,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N2GAL8582Q;
 				INFOPLIST_FILE = Tinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.corykim.Tinder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.corykim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -746,7 +758,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.corykim.TinderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tinder.app/Tinder";
 			};
@@ -768,7 +780,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.corykim.TinderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tinder.app/Tinder";
 			};
