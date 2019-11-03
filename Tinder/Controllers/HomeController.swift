@@ -286,7 +286,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     }
     
     @objc fileprivate func handleMessage() {
-        let vc = MatchesMessagesController()
+        guard let user = user else { return }
+        let vc = MatchesMessagesController(currentUser: user)
         navigationController?.pushViewController(vc, animated: true)
     }
     

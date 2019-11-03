@@ -14,6 +14,12 @@ import FirebaseFirestore
 class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, RecentMessage, MatchesHeader>, UICollectionViewDelegateFlowLayout {
     
     var recentMessagesDictionary = [String: RecentMessage]()
+    var currentUser: User?
+    
+    init(currentUser: User) {
+        self.currentUser = currentUser
+        super.init()
+    }
     
     fileprivate func fetchRecentMessages() {
             guard let currentUserId = Auth.auth().currentUser?.uid else { return }
@@ -49,8 +55,9 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, Rec
     }
     
     func didSelectMatchFromHeader(match: Match) {
-        print("match:", match.name)
-        let chatLogController = ChatLogController(match: match)
+//        print("match:", match.name)
+        guard let currentUser = currentUser else { return }
+        let chatLogController = ChatLogController(match: match, currentUser: currentUser)
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     
@@ -85,10 +92,11 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, Rec
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let currentUser = currentUser else { return }
         let recentMessage = items[indexPath.item]
         let dictionary = ["name": recentMessage.name, "profileImageUrl": recentMessage.profileImageUrl, "uid": recentMessage.uid]
         let match = Match(dictionary: dictionary)
-        let chatLogController = ChatLogController(match: match)
+        let chatLogController = ChatLogController(match: match, currentUser: currentUser)
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     
@@ -98,5 +106,9 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, Rec
     
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
