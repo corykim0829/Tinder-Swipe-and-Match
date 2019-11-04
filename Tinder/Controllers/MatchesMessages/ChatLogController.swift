@@ -120,7 +120,7 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
                 return
             }
             
-            print("Saved recent Message FROM")
+//            print("Saved recent Message FROM")
         }
         
         guard let currentUser = self.currentUser else { return }
@@ -131,7 +131,7 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
                 return
             }
             
-            print("Saved recent Message TO")
+//            print("Saved recent Message TO")
         }
     }
     
@@ -148,7 +148,7 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
                 return
             }
             
-            print("successfully saved msg into Firestore")
+//            print("successfully saved msg into Firestore")
             self.customInputView.textView.text = nil
             self.customInputView.placeholderLabel.isHidden = false
         }
@@ -161,7 +161,7 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
                 return
             }
             
-            print("successfully saved msg into Firestore")
+//            print("successfully saved msg into Firestore")
             self.customInputView.textView.text = nil
             self.customInputView.placeholderLabel.isHidden = false
         }
