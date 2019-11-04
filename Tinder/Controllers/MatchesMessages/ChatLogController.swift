@@ -17,18 +17,23 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
     fileprivate var match: Match
     fileprivate var currentUser: User?
     
+    fileprivate var listener: ListenerRegistration?
+    
     init(match: Match, currentUser: User) {
         self.match = match
         self.currentUser = currentUser
-        print("match is \(match.name), current user is \(currentUser.name!)")
         super.init()
+    }
+    
+    deinit {
+        print("Released memory!")
     }
     
     fileprivate func fetchMessages() {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
         let query = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid).order(by: "timestamp")
         
-        query.addSnapshotListener { (querySnapshot, err) in
+        listener = query.addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Failed to fetch messages", err)
                 return
@@ -73,6 +78,14 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         fetchMessages()
         
         setupUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if isMovingFromParent {
+            listener?.remove()
+        }
     }
     
     fileprivate func fetchCurrentUser() {

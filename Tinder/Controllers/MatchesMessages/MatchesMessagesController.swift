@@ -13,8 +13,9 @@ import FirebaseFirestore
 
 class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, RecentMessage, MatchesHeader>, UICollectionViewDelegateFlowLayout {
     
-    var recentMessagesDictionary = [String: RecentMessage]()
-    var currentUser: User?
+    fileprivate var recentMessagesDictionary = [String: RecentMessage]()
+    fileprivate var currentUser: User?
+    fileprivate var listener: ListenerRegistration?
     
     init(currentUser: User) {
         self.currentUser = currentUser
@@ -22,8 +23,10 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, Rec
     }
     
     fileprivate func fetchRecentMessages() {
-            guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages").addSnapshotListener { (querySnapshot, err) in
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        
+        let query = Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages")
+        listener = query.addSnapshotListener { (querySnapshot, err) in
             // check err
             
             querySnapshot?.documentChanges.forEach({ (change) in
@@ -91,6 +94,14 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, Rec
         statusBarCoverView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if isMovingFromParent {
+            listener?.remove()
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let currentUser = currentUser else { return }
         let recentMessage = items[indexPath.item]
@@ -106,6 +117,10 @@ class MatchesMessagesController: LBTAListHeaderController<RecentMessageCell, Rec
     
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    deinit {
+        print("released memory!")
     }
     
     required init?(coder aDecoder: NSCoder) {
